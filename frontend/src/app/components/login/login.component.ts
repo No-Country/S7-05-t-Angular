@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit{
   // private readonly returnUrl: string;
 
   constructor(
-    private _route: ActivatedRoute,
     private _router: Router,
     private _authenticationService: AuthenticationService
   ) {
