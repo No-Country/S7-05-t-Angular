@@ -1,1 +1,30 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">NAME APP</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/dashboard/general" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><i class="bi bi-grid" style="font-size: 1.2rem;"></i> opcion1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard/gastos" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><i class="bi bi-box-arrow-down" style="font-size: 1.2rem;"></i> opcion2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard/ingresos" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><i class="bi bi-box-arrow-up" style="font-size: 1.2rem;"></i> opcion3</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard/estadisticas" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><i class="bi bi-graph-up" style="font-size: 1.2rem;"></i> opcion4</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard/configuracion" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><i class="bi bi-gear" style="font-size: 1.2rem;" ></i> Configuración</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="#"  data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><i class="bi bi-box-arrow-left" style="font-size: 1.2rem;"></i> Cerrar sesión</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
