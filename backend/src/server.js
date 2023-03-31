@@ -1,7 +1,7 @@
 const express = require('express');
 require('dotenv').config()
 const morgan = require('morgan');
-require('./database/Db');
+require('./database/db');
 const server = express();
 
 const PORT = process.env.PORT || 3000
