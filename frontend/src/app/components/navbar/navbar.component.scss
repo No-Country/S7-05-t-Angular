@@ -25,9 +25,13 @@ nav{
   .container-items{
     justify-content: flex-end;
     .dropdown{
-      left: -20vh;
-      & ul{
+       ul{
         background: c.$primary;
+        li{
+          a{
+            color: #fff;
+          }
+        }
       }
     }
   }
@@ -53,6 +57,7 @@ nav{
           color:#000;
            li{
               a{
+                color: #000;
                 &:hover{
                   background:#1D90FC;
                 }
@@ -61,5 +66,11 @@ nav{
         }
       }
     }
+  }
+}
+
+@media (min-width:1024px){
+  .dropdown{
+    left: -20vh;
   }
 }
