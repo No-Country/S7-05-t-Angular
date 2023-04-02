@@ -9,6 +9,10 @@
 ```
 docker-compose up -d
 ```
-6. Levantar: ```npm start``` 
+6. Ejecutar las migraciones: ```npx sequelize-cli db:migrate``` 
 
-7. Endoint:  ```http://localhost:3000/api/``` 
+7. Levantar el proyecto: ```npm start``` 
+
+8. Endoint:  ```http://localhost:3000/api/``` 
+
+
