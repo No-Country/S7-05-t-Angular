@@ -6,7 +6,7 @@ import { filter, Subject, take, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.sass'],
+  styleUrls: ['./login.component.scss'],
   providers: [AuthenticationService ]
 })
 export class LoginComponent implements OnInit{
