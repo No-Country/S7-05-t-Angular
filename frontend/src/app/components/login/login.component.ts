@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit{
 
   public onSubmit(): void {
     this.loginValid = true;
+    this._authenticationService.login(this.username, this.password);
     this._router.navigateByUrl('/home');
-
     // this._authService.login(this.username, this.password).pipe(
     //   take(1)
     // ).subscribe({

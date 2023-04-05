@@ -27,6 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 
+import {AuthenticationService} from './services/Authentication.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatTableModule,
     MatCheckboxModule
   ],
-  providers: [],
+  providers: [AuthenticationService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
