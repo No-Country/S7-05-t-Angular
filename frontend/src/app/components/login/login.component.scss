@@ -1,0 +1,36 @@
+
+.login {
+    position: absolute;
+    text-align: center;
+    width: 500px;
+    height: 60px;
+    left: 40%    ;
+    top: 30%;
+}
+
+mat-form-field{
+    display: block;
+} 
+
+.btn-submit {
+    background: #1D90FC;
+    color: #FFFFFF;
+    border-radius: 100px;
+    width: 15em;
+    float: right;
+}
+    
+.img-1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 252px;
+}
+    
+.img-2 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 312px;
+}
+    
