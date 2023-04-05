@@ -26,7 +26,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
-
 import {AuthenticationService} from './services/Authentication.service';
 
 @NgModule({
@@ -54,7 +53,9 @@ import {AuthenticationService} from './services/Authentication.service';
     MatInputModule,
     MatFormFieldModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatCardModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthenticationService ],
   bootstrap: [AppComponent]
