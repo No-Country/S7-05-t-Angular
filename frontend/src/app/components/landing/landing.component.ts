@@ -18,6 +18,7 @@ export class LandingComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.dialog.closeAll();
       console.log(`Dialog result: ${result}`);
     });
   }

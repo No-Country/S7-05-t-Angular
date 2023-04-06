@@ -12,7 +12,7 @@
                 <mat-label>Correo electrónico</mat-label>
                 <input matInput placeholder="ejemplo@gmail.com" [(ngModel)]="username" name="username" required>
                 <mat-error>
-                    Ingresa un email
+                    Ingresa un correo válido
                 </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline" style="width: 100%">
@@ -20,7 +20,7 @@
 
                 <input matInput type="password" placeholder="**********" [(ngModel)]="password" name="password" required>
                 <mat-error>
-                    Ingresa una contraseña
+                    Ingresa una contraseña válida
                 </mat-error>
             </mat-form-field>
             <button  mat-fab extended class="btn-submit" [disabled]="!loginForm.form.valid">Iniciar Sesión</button>
