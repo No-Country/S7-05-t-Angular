@@ -29,6 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { LandingComponent } from './components/landing/landing.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
+import {AuthenticationService} from './services/Authentication.service';
 
 @NgModule({
   declarations: [
@@ -58,9 +59,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTableModule,
     MatCheckboxModule,
     MatDialogModule,
-
+    MatCardModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AuthenticationService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
