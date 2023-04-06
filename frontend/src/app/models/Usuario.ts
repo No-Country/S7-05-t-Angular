@@ -4,10 +4,13 @@ export class Usuario {
     password?: string;
     apellido?: string;
     nombre?: string;
-    rol?: number;
+    isAdmin?: number;
+    isTeamLeader?: number;
     habilitado?: number;
     grupoId?: number;
     token?: string;
+    rol?: string;
+    stack?: string;
 
     constructor(
         id = 0,
@@ -15,19 +18,25 @@ export class Usuario {
         apellido = '',
         nombre = '',
         email = '',
-        rol = 0,
+        isAdmin = 0,
+        isTeamLeader = 0,
         habilitado = 0,
         grupoId = 0,
         token = '',
+        rol = '',
+        stack = ''
     ) {
         this.id = id;
         this.password = password;
         this.apellido = apellido;
         this.nombre = nombre;
         this.email = email;
-        this.rol = rol;
+        this.isAdmin = isAdmin;
+        this.isTeamLeader = isTeamLeader;
         this.habilitado = habilitado;
         this.grupoId = grupoId;
         this.token = token;
+        this.rol = rol;
+        this.stack = stack;
     }
 }

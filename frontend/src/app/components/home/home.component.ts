@@ -14,6 +14,7 @@ export class HomeComponent {
   user: Usuario | null;
   loading: boolean = false;
   grupos: Array<Grupo> = new Array<Grupo>();
+  teamLeaders: Array<Usuario> = new Array<Usuario>();
 
   constructor(
     private _router: Router,
@@ -32,7 +33,14 @@ export class HomeComponent {
       {id: 4, turno: 'M', cohorte: 9, numero: 15, stack: 'Angular'}, 
     ]
 
-    console.log(this._authenticationService.userValue);
+    this.teamLeaders = [
+      { id: 1,  apellido: 'Micaela', nombre: 'Andres', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 1, rol: 'Frontend', stack: 'Angular'},
+      { id: 2,  apellido: 'Gomez', nombre: 'Franco', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 1, rol: 'Frontend', stack: 'Angular'},
+      { id: 3,  apellido: 'Gomez', nombre: 'Franco', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 1, rol: 'Frontend', stack: 'Angular'},
+      { id: 4,  apellido: 'Gomez', nombre: 'Franco', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 1, rol: 'Frontend', stack: 'Angular'},
+      { id: 5,  apellido: 'Gomez', nombre: 'Franco', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 1, rol: 'Frontend', stack: 'Angular'},
+
+    ]
     this.user = this._authenticationService.userValue;
   }
 

@@ -9,7 +9,7 @@
         <div class="col-lg-9">
             <mat-card class="home-card">
                 <mat-card-header>
-                    <mat-card-title class="home-card-title">Bienvenida {{ user.nombre }} </mat-card-title>
+                    <mat-card-title class="home-card-title">Bienvenido {{ user.nombre }} </mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <p>
@@ -29,6 +29,18 @@
                     </mat-card-content>
                 </mat-card>
             </div>
+
+            <!-- <div class="teams" *ngIf="user.rol === 1">
+                <mat-card class="team-card" *ngFor="let tl of teamLeaders">
+                    <mat-card-content class="team-card-content">
+                        <p class="group"> Grupo </p>
+                        <p class="group-name"> {{grupo.seleccionado ? "S"+grupo.seleccionado : "C"+grupo.cohorte }} - {{grupo.numero != null ? grupo.numero < 10 ? "0"+grupo.numero : ""+grupo.numero : "" }} - {{grupo.turno}} - {{grupo.stack}} </p>
+                        <button mat-icon-button (click)="onClick()">
+                            <mat-icon> chevron_right </mat-icon>
+                        </button>
+                    </mat-card-content>
+                </mat-card>
+            </div> -->
         </div>
     </div>
 </div>

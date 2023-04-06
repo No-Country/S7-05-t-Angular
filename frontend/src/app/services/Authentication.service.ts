@@ -40,7 +40,7 @@ export class AuthenticationService {
     }
 
     login(email: string, password: string) {
-      let user = new Usuario(1, password, 'Diaz', 'Micaela', email, 2, 1, 1);
+      let user = new Usuario(1, password, 'Diaz', 'Micaela', email, 1, 0, 1);
       // localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('user', JSON.stringify(user));
       this.userSubject.next(user);
