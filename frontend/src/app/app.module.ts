@@ -30,6 +30,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import {AuthenticationService} from './services/Authentication.service';
+import {GruposService} from './services/Grupos.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,7 @@ import {AuthenticationService} from './services/Authentication.service';
     MatCardModule,
     BrowserAnimationsModule
   ],
-  providers: [AuthenticationService ],
+  providers: [AuthenticationService, GruposService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
