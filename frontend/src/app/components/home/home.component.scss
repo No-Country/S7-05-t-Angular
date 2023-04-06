@@ -1,3 +1,11 @@
+@use './../../../assets/theme/colors.scss' as c;
+
+main {
+    height: 100%;
+    width: 100%;
+    background: c.$primary ;
+}
+
 html, body, app-root {
     height: 100%;
     width: 100%;

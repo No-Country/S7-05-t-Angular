@@ -1,29 +1,31 @@
-<div class="container">
-    <img class="img-1" src="../../../assets/img/rect1.png" alt="">
-    <img  class="img-2" src="../../../assets/img/rect2.png" alt="">
-    <div class="login">
+
+  <div class="container d-flex row">
+    <img class="img-1" src="../../../assets/img/rectblue.png" alt="">
+    <img  class="img-2" src="../../../assets/img/rectgreen.png" alt="">
+    <div class="login ">
         <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
             <h2>Ingreso</h2>
             <mat-error *ngIf="!loginValid">
               Email o contraseña incorrectos
             </mat-error>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" style="width: 100%">
                 <mat-label>Correo electrónico</mat-label>
                 <input matInput placeholder="ejemplo@gmail.com" [(ngModel)]="username" name="username" required>
                 <mat-error>
-                    Ingresa un email
+                    Ingresa un correo válido
                 </mat-error>
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" style="width: 100%">
                 <mat-label>Contraseña</mat-label>
-                
+
                 <input matInput type="password" placeholder="**********" [(ngModel)]="password" name="password" required>
                 <mat-error>
-                    Ingresa una contraseña
+                    Ingresa una contraseña válida
                 </mat-error>
             </mat-form-field>
             <button  mat-fab extended class="btn-submit" [disabled]="!loginForm.form.valid">Iniciar Sesión</button>
         </form>
-    </div>    
+    </div>
 </div>
+
 

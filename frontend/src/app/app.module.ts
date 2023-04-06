@@ -26,6 +26,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
+import { LandingComponent } from './components/landing/landing.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 import {AuthenticationService} from './services/Authentication.service';
 
 @NgModule({
@@ -34,7 +37,8 @@ import {AuthenticationService} from './services/Authentication.service';
     LoginComponent,
     NavbarComponent,
     HomeComponent,
-    GroupDetailComponent
+    GroupDetailComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ import {AuthenticationService} from './services/Authentication.service';
     MatFormFieldModule,
     MatTableModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatCardModule,
     BrowserAnimationsModule
   ],
