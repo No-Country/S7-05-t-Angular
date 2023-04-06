@@ -26,6 +26,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
+import { LandingComponent } from './components/landing/landing.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import {MatIconModule} from '@angular/material/icon';
     LoginComponent,
     NavbarComponent,
     HomeComponent,
-    GroupDetailComponent
+    GroupDetailComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatInputModule,
     MatFormFieldModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,13 +6,10 @@ import { filter, Subject, take, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./login.component.scss']
-=======
-  styleUrls: ['./login.component.sass'],
+  styleUrls: ['./login.component.scss'],
   providers: [AuthenticationService ]
->>>>>>> 0e4abf7deed94da9e123d07b4508110d8917c7df
 })
+
 export class LoginComponent implements OnInit{
   public loginValid = true;
   public username = '';

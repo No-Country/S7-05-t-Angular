@@ -1,0 +1,18 @@
+@use './../../../assets/theme/colors.scss' as c;
+
+main{
+  background: c.$primary;
+  height: 100vh;
+  color: c.$white;
+  section{
+    button{
+      color: c.$white;
+      background-color: c.$buttons;
+      width: 100%;
+      margin: 2vh 0;
+      border-radius: 100px;
+    }
+
+  }
+}
+
