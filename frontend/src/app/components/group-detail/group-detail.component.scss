@@ -41,6 +41,7 @@ body{
     display: grid;
     grid-template-areas: '1 2';
     justify-content: space-evenly;
+    margin-bottom: 2rem;
   
     h4{
       font-size: map-get(variables.$font-sizes , "text" );
@@ -65,32 +66,40 @@ body{
     }
       
   }
-  
-  .meet-container {
-    height: 4rem;
-    width: 100%;
-    display: grid;
-    grid-template-areas: '1 2';
-    clip-path: polygon(0 0, 100% 100%, 0 100%);
-    background-color: map-get(variables.$colors, "light");
-    margin-bottom: 1.5rem;
-  
-    .section{
-      text-align: center;
-    }
 
-    .section-1{
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
+  .content{
+    display: flex;
+    align-items: center;
 
-    .section-2{
-      color: gray;
+    .meet-container {
+      height: 4rem;
+      width: 90%;
+      display: grid;
+      grid-template-areas: '1 2';
+      clip-path: polygon(0 0, 100% 100%, 0 100%);
+      background-color: map-get(variables.$colors, "light");
+      margin-bottom: 1.5rem;
       position: absolute;
-      top: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
+    }
+
+    .meet-number{
+      position: absolute;
+      width: 94%;
+      display: grid;
+      gap: 43%;
+      grid-template-areas: '1 2';
+      justify-content: center;
+
+      .meet1, .meet2 {
+        cursor: pointer;
+        margin-bottom: 0.7rem;
+        display: inline;
+        font-size: map-get(variables.$font-sizes , "text" );
+      }
+
+      .meet2 p{
+        color: rgb(132, 129, 129);
+      }
     }
   }
 
@@ -98,6 +107,7 @@ body{
   .table-info-week{
     padding: 0 1.5rem;
     border-collapse: collapse;
+    margin-top: 3rem;
 
     input[type="checkbox"] {
       appearance: none;
@@ -106,6 +116,7 @@ body{
       width: 1rem;
       height: 1rem;
       margin-right: 0.5rem;
+      cursor: pointer;
     }
     
     input[type="checkbox"]:checked {
@@ -116,8 +127,8 @@ body{
     input[type="checkbox"]:checked::before {
       content: "";
       display: block;
-      width: 0.7rem;
-      height: 0.7rem;
+      width: 0.6rem;
+      height: 0.6rem;
       border-radius: 50%;
       background-color: map-get(variables.$colors, "light");
       border: 2px solid white;
