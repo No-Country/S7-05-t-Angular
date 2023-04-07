@@ -1,5 +1,10 @@
 @use './../../../assets/theme/colors.scss' as c;
 
+:host{
+  position: static;
+  top:0;
+  z-index: 20;
+}
 nav{
   background: c.$primary;
   color:#fff;
