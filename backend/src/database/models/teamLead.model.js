@@ -1,41 +1,7 @@
-// const { Sequelize, DataTypes, Model } = require("sequelize");
-// const sequelize = require("../db");
-// const Student = require("./student");
+const { Model, DataTypes, Sequelize } = require("sequelize");
 
-// class TeamLead extends Model {}
-
-// TeamLead.init(
-//   {
-//     id: {
-//       type: DataTypes.INTEGER,
-//       primaryKey: true,
-//       autoIncrement: true,
-//     },
-//     id_team: {
-//       type: DataTypes.INTEGER,
-//       allowNull: false,
-//     },
-//     id_student: {
-//       type: DataTypes.INTEGER,
-//       allowNull: false,
-//       references: {
-//         model: Student,
-//         key: "id",
-//       },
-//     },
-//   },
-//   {
-//     sequelize,
-//     modelName: "team_lead",
-//   }
-// );
-
-// module.exports = TeamLead;
-
-const { Model, DataTypes, Sequelize } = require('sequelize');
-
-
-const TEAM_LEAD_TABLE = "team_lead";
+const { STUDENT_TABLE } = require("../models/student.model");
+const TEAM_LEAD_TABLE = "Team_leads";
 
 const TeamLeadSchema = {
   id: {
@@ -43,29 +9,25 @@ const TeamLeadSchema = {
     primaryKey: true,
     autoIncrement: true,
   },
-  id_team: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  id_student: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
 };
 
 class TeamLead extends Model {
   static associate(models) {
-    // agregar relaciones con otros modelos aquí
+    this.belongsTo(models.Student, { foreignKey: "studentId" });
+    this.hasMany(models.Team, {
+      foreignKey: "team_leadId",
+      as: "teams",
+    });
   }
 
   static config(sequelize) {
     return {
       sequelize,
-      tableName: TEAM_LEAD,
+      tableName: TEAM_LEAD_TABLE,
       modelName: "TeamLead",
       timestamps: true,
     };
   }
 }
 
-module.exports = { TEAM_LEAD_TABLE, TeamLeadSchema, TeamLead }
+module.exports = { TEAM_LEAD_TABLE, TeamLeadSchema, TeamLead };

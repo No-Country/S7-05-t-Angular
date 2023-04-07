@@ -1,6 +1,7 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const STUDENT_TABLE = 'students';
+//const {TEAM_TABLE} = require("../models/team.model");
+const STUDENT_TABLE = 'Students';
 
 const StudentSchema = {
   id: {
@@ -34,11 +35,28 @@ const StudentSchema = {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
+  // id_team: {
+  //   type: DataTypes.INTEGER,
+  //   allowNull: true,
+  //   references: {
+  //     model: TEAM_TABLE,
+  //     key: "id"
+  //   },
+  //   onUpdate: 'CASCADE',
+  //   onDelete: 'SET NULL'
+  // },
 }
 
 class Student extends Model {
   static associate(models) {
-    // agregar relaciones con otros modelos aquí
+    this.belongsTo(models.Team, {
+      foreignKey: "teamId",
+      as: "team",
+    })
+    this.hasOne(models.TeamLead, {
+      foreignKey: "studentId",
+      as: "teamLead",
+    })
   }
 
   static config(sequelize) {
