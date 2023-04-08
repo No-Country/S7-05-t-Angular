@@ -1,7 +1,5 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { ADMIN_TABLE } = require("./admin.model");
-
-//const {TEAM_TABLE} = require("../models/team.model");
 const STUDENT_TABLE = "Students";
 
 const StudentSchema = {
@@ -55,7 +53,6 @@ const StudentSchema = {
     onUpdate: "CASCADE",
     onDelete: "SET NULL",
   },
-
 };
 
 class Student extends Model {
@@ -67,6 +64,10 @@ class Student extends Model {
     this.belongsTo(models.Admin, {
       foreignKey: "adminId",
       as: "admin",
+    });
+    this.belongsToMany(models.Technology, {
+      through: "Student_Technologies",
+      foreignKey: "studentId",
     });
     this.hasOne(models.TeamLead, {
       foreignKey: "studentId",

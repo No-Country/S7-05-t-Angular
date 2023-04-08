@@ -46,6 +46,10 @@ class Admin extends Model {
       foreignKey: "adminId",
       as: "team_leads",
     });
+    this.hasMany(models.Technology, {
+      foreignKey: "adminId",
+      as: "technologies",
+    });
   }
 
   static config(sequelize) {
