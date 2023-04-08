@@ -1,6 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const ADMIN_TABLE = "admins";
+const ADMIN_TABLE = "Admins";
 
 const AdminSchema = {
   id: {

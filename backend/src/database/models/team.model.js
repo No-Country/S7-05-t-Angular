@@ -1,5 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { Admin, ADMIN_TABLE } = require("./admin.model");
+const { SELECTED_TABLE } = require("./selected.model");
 
 const TEAM_TABLE = "Teams";
 
@@ -37,6 +38,15 @@ const TeamSchema = {
     onUpdate: "CASCADE",
     onDelete: "SET NULL",
   },
+  selectedId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: SELECTED_TABLE,
+      key: "id",
+    },
+    onUpdate: "CASCADE",
+    onDelete: "SET NULL",
+  },
 };
 
 class Team extends Model {
@@ -44,6 +54,10 @@ class Team extends Model {
     this.belongsTo(models.TeamLead, {
       foreignKey: "team_leadId",
       as: "teamLead",
+    });
+    this.belongsTo(models.Selected, {
+      foreignKey: "selectedId",
+      as: "selected",
     });
     this.belongsTo(models.Admin, {
       foreignKey: "adminId",

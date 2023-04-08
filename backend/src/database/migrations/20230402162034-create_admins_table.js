@@ -1,8 +1,10 @@
 'use strict';
 
+const { ADMIN_TABLE } = require("../models/admin.model");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Admins', {
+    await queryInterface.createTable(ADMIN_TABLE, {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -42,6 +44,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Admins');
+    await queryInterface.dropTable(ADMIN_TABLE);
   }
 };
