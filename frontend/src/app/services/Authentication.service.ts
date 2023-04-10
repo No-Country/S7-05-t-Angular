@@ -40,7 +40,13 @@ export class AuthenticationService {
     }
 
     login(email: string, password: string) {
-      let user = new Usuario(1, password, 'Diaz', 'Micaela', email, 1, 0, 1);
+      let user = new Usuario();
+      if (email === 'teamleader@gmail.com') {
+        user = new Usuario(1, password, 'Diaz', 'Micaela', email, 0, 1, 1);
+      }
+      if (email === 'admin@gmail.com') {
+        user = new Usuario(2, password, 'Garcia', 'Javier', email, 1, 0, 1);
+      } 
       // localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('user', JSON.stringify(user));
       this.userSubject.next(user);

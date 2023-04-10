@@ -34,11 +34,26 @@ export class HomeComponent {
     ]
 
     this.teamLeaders = [
-      { id: 1,  apellido: 'Micaela', nombre: 'Andres', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 1, rol: 'Frontend', stack: 'Angular'},
-      { id: 2,  apellido: 'Gomez', nombre: 'Franco', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 1, rol: 'Frontend', stack: 'Angular'},
-      { id: 3,  apellido: 'Gomez', nombre: 'Franco', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 1, rol: 'Frontend', stack: 'Angular'},
-      { id: 4,  apellido: 'Gomez', nombre: 'Franco', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 1, rol: 'Frontend', stack: 'Angular'},
-      { id: 5,  apellido: 'Gomez', nombre: 'Franco', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 1, rol: 'Frontend', stack: 'Angular'},
+      { id: 1,  apellido: 'Micaela', nombre: 'Andres', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 1, rol: 'Diseñadora Web', stack: 'Angular', 
+          grupos: [ {id: 1, turno: 'T', seleccionado: 7, numero: 8, stack: 'Angular'}, 
+          {id: 2, turno: 'M', cohorte: 9, numero: 10, stack: 'React Java'}, 
+          {id: 3, turno: 'T', seleccionado: 7, numero: 11, stack: 'Python'}]},
+      { id: 2,  apellido: 'Simón', nombre: 'Martinez', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 2, rol: 'Frontend', stack: 'Angular',
+          grupos: [ {id: 1, turno: 'T', seleccionado: 7, numero: 8, stack: 'Angular'}, 
+          {id: 2, turno: 'M', cohorte: 9, numero: 10, stack: 'React Java'}, 
+          {id: 3, turno: 'T', seleccionado: 7, numero: 11, stack: 'Python'}]},
+      { id: 3,  apellido: 'Luciana', nombre: 'Valencia', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 3, rol: 'Backend', stack: 'Angular', 
+          grupos: [ {id: 1, turno: 'T', seleccionado: 7, numero: 8, stack: 'Angular'}, 
+          {id: 2, turno: 'M', cohorte: 9, numero: 10, stack: 'React Java'}, 
+          {id: 3, turno: 'T', seleccionado: 7, numero: 11, stack: 'Python'}]},
+      { id: 4,  apellido: 'Juan', nombre: 'Candamil', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 4, rol: 'Frontend', stack: 'Angular', 
+          grupos: [ {id: 1, turno: 'T', seleccionado: 7, numero: 8, stack: 'Angular'}, 
+          {id: 2, turno: 'M', cohorte: 9, numero: 10, stack: 'React Java'}, 
+          {id: 3, turno: 'T', seleccionado: 7, numero: 11, stack: 'Python'}]},
+      { id: 5,  apellido: 'Manuela', nombre: 'Cruz', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 5, rol: 'Frontend', stack: 'Angular',
+          grupos: [ {id: 1, turno: 'T', seleccionado: 7, numero: 8, stack: 'Angular'}, 
+          {id: 2, turno: 'M', cohorte: 9, numero: 10, stack: 'React Java'}, 
+          {id: 3, turno: 'T', seleccionado: 7, numero: 11, stack: 'Python'}]},
 
     ]
     this.user = this._authenticationService.userValue;
@@ -48,8 +63,8 @@ export class HomeComponent {
     this._router.navigateByUrl('/detail');
   }
 
-  getRol(rol: number) : string {
-    return rol === 1 ? 'Administrador' : 'Team Leader'
+  getRol(isAdmin: number) : string {
+    return isAdmin === 1 ? 'Administrador' : 'Team Leader'
   } 
 
   obtenerGrupos() {

@@ -1,9 +1,17 @@
 <div class="container-fluid" *ngIf="user">
     <div class="row">
         <div class="col-lg-3 sidenav">
-            <img class="sidenav-img" src="/assets/img//perfil.png" alt="team-leader-profile">
-            <span class="sidenav-title"> {{user.nombre}} {{user.apellido}} </span>
-            <span class="sidenav-subtitle" *ngIf="user.rol != null"> {{ getRol(user.rol) }} </span>
+            <div class="d-flex justify-content-center flex-column align-items-center">
+                <img class="sidenav-img" src="/assets/img//perfil.png" alt="team-leader-profile">
+                <span class="sidenav-title"> {{user.nombre}} {{user.apellido}} </span>
+                <span class="sidenav-subtitle" *ngIf="user.isAdmin != null"> {{ getRol(user.isAdmin) }} </span>
+            </div>
+            <div class="d-flex justify-content-center flex-column align-items-center gap-4" *ngIf="user.isAdmin === 1">
+                <a class="sidenav-links"> Comentarios </a>
+                <a class="sidenav-links"> Reportes </a>
+                <a class="sidenav-links"> Configuracion </a>
+                <button mat-raised-button class="sidenav-btn">Añadir Team Leader</button>
+            </div>
             <!-- <img class="sidenav-img-2" src="/assets/img//rect3.png" alt="rect-3"> -->
         </div>
         <div class="col-lg-9">
@@ -18,7 +26,7 @@
                 </mat-card-content>
             </mat-card>
 
-            <div class="teams" *ngIf="user.rol === 2">
+            <div class="teams" *ngIf="user.isAdmin === 0">
                 <mat-card class="team-card" *ngFor="let grupo of grupos">
                     <mat-card-content class="team-card-content">
                         <p class="group"> Grupo </p>
@@ -30,17 +38,30 @@
                 </mat-card>
             </div>
 
-            <!-- <div class="teams" *ngIf="user.rol === 1">
-                <mat-card class="team-card" *ngFor="let tl of teamLeaders">
-                    <mat-card-content class="team-card-content">
-                        <p class="group"> Grupo </p>
-                        <p class="group-name"> {{grupo.seleccionado ? "S"+grupo.seleccionado : "C"+grupo.cohorte }} - {{grupo.numero != null ? grupo.numero < 10 ? "0"+grupo.numero : ""+grupo.numero : "" }} - {{grupo.turno}} - {{grupo.stack}} </p>
-                        <button mat-icon-button (click)="onClick()">
-                            <mat-icon> chevron_right </mat-icon>
-                        </button>
-                    </mat-card-content>
-                </mat-card>
-            </div> -->
+            <div class="teamleaders" *ngIf="user.isAdmin === 1">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-12" *ngFor="let tl of teamLeaders">
+                        <mat-card class="teamleaders-card">
+                            <mat-card-content class="teamleaders-card-content">
+                                <img class="teamleaders-card-img" src="/assets/img//perfil2.png" alt="team-leader-profile">
+                                <span class="teamleaders-card-title"> {{tl.nombre}} {{tl.apellido}} </span>
+                                <span class="teamleaders-card-subtitle"> {{tl.rol}} </span>
+                                <span class="teamleaders-card-groups"> Grupos: </span>
+                                <span class="teamleaders-card-groups" *ngFor="let grupo of tl.grupos"> 
+                                    {{grupo.seleccionado ? "S"+grupo.seleccionado : "C"+grupo.cohorte }} - {{grupo.numero != null ? grupo.numero < 10 ? "0"+grupo.numero : ""+grupo.numero : "" }} - {{grupo.turno}} - {{grupo.stack}} 
+                                </span>
+                                <!-- <span class="teamleaders-card-groups"> S7-01-t-native </span>
+                                <span class="teamleaders-card-groups"> S7-10-m-angular </span> -->
+                            </mat-card-content>
+                            <button class="teamleaders-card-btn" mat-icon-button (click)="onClick()">
+                                <mat-icon> chevron_right </mat-icon>
+                            </button>
+                        </mat-card>
+                    </div>
+
+                </div>
+               
+            </div>
         </div>
     </div>
 </div>

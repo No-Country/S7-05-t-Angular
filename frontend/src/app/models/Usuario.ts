@@ -1,3 +1,5 @@
+import { Grupo } from "./Grupo";
+
 export class Usuario {
     id?: number;
     email?: string;
@@ -11,7 +13,8 @@ export class Usuario {
     token?: string;
     rol?: string;
     stack?: string;
-
+    grupos?: Array<Grupo>;
+    
     constructor(
         id = 0,
         password = '',
