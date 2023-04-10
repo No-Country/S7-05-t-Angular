@@ -1,0 +1,122 @@
+<body>
+    <div class="title">
+        <p>s7-05-t-angular</p>
+    </div>
+    <div class="week-navbar">
+        <mat-card>
+            <mat-card-content>SEMANA 1</mat-card-content>
+        </mat-card>
+        <mat-card>
+            <mat-card-content>SEMANA 2</mat-card-content>
+        </mat-card>
+        <mat-card>
+            <mat-card-content>SEMANA 3</mat-card-content>
+        </mat-card>
+        <mat-card>
+            <mat-card-content>SEMANA 4</mat-card-content>
+        </mat-card>
+    </div>
+    <div class="container-group-info">
+        <div *ngIf="members.length > 0" class="members">
+            <h4>Integrantes:</h4>
+            <p *ngFor="let member of members" class="item-list">{{ member.fullName }}</p>
+        </div>
+        <div class="technologies">
+            <h4>Tecnologías:</h4>
+            <div class="row">
+                <div class="column">
+                    <p>UX/UI</p>
+                    <mat-form-field>
+                        <input matInput>
+                    </mat-form-field>
+                </div>
+                <div class="column">
+                    <p>Frontend</p>
+                    <mat-form-field>
+                        <input matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <p>Backend</p>
+                    <mat-form-field>
+                        <input matInput>
+                    </mat-form-field>
+                </div>
+                <div class="column">
+                    <p>Database</p>
+                    <mat-form-field>
+                        <input matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <p>Testing</p>
+                    <mat-form-field>
+                        <input matInput>
+                    </mat-form-field>
+                </div>
+                <div class="column">
+                    <p>Deployment</p>
+                    <mat-form-field>
+                        <input matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="meet-container"></div>
+        <div class="meet-number">
+            <div class="meet1">
+                <p>MEET 1</p>
+            </div>
+            <div class="meet2">
+                <p>MEET 2</p>
+            </div>
+        </div>
+    </div>
+    <div class="table-info-week">
+        <table mat-table [dataSource]="members">
+
+            <ng-container matColumnDef="fullName">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="rol">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="meeting1">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element">
+                    <input type="checkbox" [(ngModel)]="element.meeting1attendance" (ngModelChange)="element.meeting1absence = !element.meeting1attendance"> <p>Presente</p>
+                    <input type="checkbox" [(ngModel)]="element.meeting1absence" (ngModelChange)="element.meeting1attendance = !element.meeting1absence"> <p>Ausente</p>
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="activity">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <p>{{ element.activity }}</p>
+                    <input class="activity-week" type="text">
+                </td>
+            </ng-container>
+
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <div class="general-observation-week">
+        <p>Observación de la semana</p>
+        <mat-card>
+            <mat-card-content><input type="text" placeholder="Deja un comentario"></mat-card-content>
+        </mat-card>
+    </div>
+    <div class="button-container">
+        <button class="submit-meet-information">Aceptar</button>
+    </div>
+</body>

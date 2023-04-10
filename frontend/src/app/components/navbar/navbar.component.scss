@@ -1,0 +1,90 @@
+@use './../../../assets/theme/colors.scss' as c;
+
+:host{
+  position: static;
+  top:0;
+  z-index: 20;
+}
+nav{
+  background: c.$primary;
+  color:#fff;
+
+  .circle{
+    width: 50px;
+    height: 50px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+  a{
+    color:#fff;
+
+    &:hover{
+      background: c.$primary;
+      font-size: 1.1rem;
+    }
+  }
+  .container-items{
+    justify-content: flex-end;
+    .dropdown{
+      color: #fff;
+       ul{
+        background: c.$primary;
+        li{
+          a{
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:500px){
+  nav {
+    color: #000;
+    background: #fff;
+    a{
+      color:#000;
+      &:hover{
+        background: none;
+      }
+    }
+    .container-items{
+      .dropdown{
+        left: 0;
+        color: #000;
+         ul{
+          background-color: #fff;
+          background: #fff;
+          color:#000;
+           li{
+              a{
+                color: #000;
+                &:hover{
+                  background:#1D90FC;
+                }
+              }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width:500px){
+  nav{
+    button{
+      background-color: #fff;
+    }
+  }
+}
+
+@media (min-width:1024px){
+  .dropdown{
+    left: -20vh;
+  }
+}

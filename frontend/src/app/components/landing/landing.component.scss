@@ -1,0 +1,49 @@
+@use './../../../assets/theme/colors.scss' as c;
+
+main{
+  background: c.$primary;
+  height: 100vh;
+  color: c.$white;
+  section{
+    article{
+      h2{
+        font-size: 4rem;
+        line-height: 4rem;
+      }
+    }
+    .buttons{
+      flex-flow: column;
+      button{
+        color: c.$white;
+        background-color: c.$buttons;
+        width: 60%;
+        height: 6.5vh;
+        margin: 2vh 0;
+        border-radius: 100px;
+      }
+    }
+    .images{
+      .img-1{
+        position:relative;
+        animation: rotate 20s linear infinite;
+        top: -15vh;
+        left: 15vh;
+      }
+      .img-2{
+        position:relative;
+        animation: rotate 20s linear infinite;
+        top: 15vh;
+        right: -12vh;
+      }
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg); /* Start with no rotation */
+        }
+        100% {
+          transform: rotate(360deg); /* Rotate 360 degrees for one complete rotation */
+        }
+      }
+    }
+  }
+}
+
