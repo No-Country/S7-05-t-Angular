@@ -27,24 +27,11 @@ const getOneStudent = async (req, res, next) => {
   }
 };
 
-//Obtener un estudiante en particular por nombre o id
-
-const getOneStudent2 = async (req, res, next) => {
-  try {
-    const studentId = req.params.id;
-    // buscar al estudiante por id
-    const student = await getStudent(studentId);
-    res.status(200).json({ success: true, student });
-  } catch (error) {
-    next(error);
-  }
-};
-
+//Obtener un estudiante en particular por nombre o email
 const searchStudent = async (req, res, next) => {  
   try {
     const term = req.params.term;   
     const students = await studentService.searchStudent(term);
-    console.log(term);
     res.status(200).json({ success: true, students })
   } catch (error) {
     next(error);
