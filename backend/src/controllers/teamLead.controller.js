@@ -22,7 +22,20 @@ const createTeamLead = async (req, res, next) => {
   }
 };
 
+
+//Obtener todos los grupos de un teamLead 
+const getTeams = async (req, res, next) => {
+  try {
+    const { id } = req.params.id;    
+    const teamLead = await teamLeadService.getTeams(id);
+    res.status(201).json({ success: true, data: teamLead });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getTeamLead,
   createTeamLead,
+  getTeams,
 };

@@ -48,9 +48,22 @@ async function createTeamLead(studentId) {
   return teamLeadData;
 }
 
-  
+async function getTeams(teamLeadId) {
+  // Verificar que el team lead existe en la base de datos
+  const teams = await models.Team.findAll({
+    where: {team_leadId: teamLeadId},
+    include: [{model: models.Student, as: 'students'}]
+  });
+
+  //No se ha encontrado el team lead
+  if (!teams) {
+    throw new Error("El team lead no tiene grupos asociados");
+  }
+  return teams;
+}
   
 module.exports = {
   createTeamLead,
   getTeamLead,
+  getTeams,
 };
