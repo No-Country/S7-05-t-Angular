@@ -4,11 +4,13 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environment';
 import * as moment from "moment";
 import { BehaviorSubject, catchError, from, map, Observable, Subject, tap } from 'rxjs';
-
+import { Usuario } from '../models/Usuario'
 @Injectable()
 export class AuthenticationService {
 
     public url;
+    private userSubject: BehaviorSubject<Usuario | null>;
+    public user: Observable<Usuario | null>;
 
     httpOptions = {
         headers: new HttpHeaders({
@@ -21,6 +23,8 @@ export class AuthenticationService {
         private _router: Router,
     ) {
         this.url = environment.url;
+        this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
+        this.user = this.userSubject.asObservable();
     }
 
     // login(userName: string, password: string): Observable<any> {
@@ -31,10 +35,31 @@ export class AuthenticationService {
     //     ));
           
     // }
-
-    login(userName: string, password: string) {
-      console.log(userName, password);
+    public get userValue() {
+        return this.userSubject.value;
     }
+
+    login(email: string, password: string) {
+      let user = new Usuario();
+      if (email === 'teamleader@gmail.com') {
+        user = new Usuario(1, password, 'Diaz', 'Micaela', email, 0, 1, 1);
+      }
+      if (email === 'admin@gmail.com') {
+        user = new Usuario(2, password, 'Garcia', 'Javier', email, 1, 0, 1);
+      } 
+      // localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
+      this.userSubject.next(user);
+      console.log(user);
+      return user;
+    }
+
+    logout() {
+      // remove user from local storage and set current user to null
+      localStorage.removeItem('user');
+      this.userSubject.next(null);
+      this._router.navigate(['/login']);
+  }
 
     // isLoggedIn(): boolean {
     //     let authToken = localStorage.getItem('ACCESS_TOKEN');
