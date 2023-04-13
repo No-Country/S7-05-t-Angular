@@ -7,7 +7,7 @@ const { TEAM_TABLE } = require('../models/team.model');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.addColumn(TEAM_TABLE, "selectedId", {
-      type: Sequelize.INTEGER,
+      type: Sequelize.UUID,        
       references: {
         model: SELECTED_TABLE,
         key: "id",

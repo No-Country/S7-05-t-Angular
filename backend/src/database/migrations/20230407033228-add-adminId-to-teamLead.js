@@ -6,7 +6,7 @@ const { ADMIN_TABLE } = require('../models/admin.model');
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.addColumn("Team_leads", "adminId", {
-      type: Sequelize.INTEGER,
+      type: Sequelize.UUID,
       references: {
         model: ADMIN_TABLE,
         key: "id",

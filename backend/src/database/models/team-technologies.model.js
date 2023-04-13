@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 
 const { TEAM_TABLE } = require('./team.model');
 const { TECHNOLOGY_TABLE } = require('./technology.model');
@@ -7,12 +7,12 @@ const TEAM_TECHNOLOGY_TABLE = 'Team_Technologies';
 
 const TeamTechnologySchema = {
   id: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
     primaryKey: true,
-    autoIncrement: true,
   },
   teamId: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,    
     allowNull: false,
     references: {
       model: TEAM_TABLE,
@@ -22,7 +22,7 @@ const TeamTechnologySchema = {
     onDelete: 'CASCADE',
   },
   technologyId: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,    
     allowNull: false,
     references: {
       model: TECHNOLOGY_TABLE,
