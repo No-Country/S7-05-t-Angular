@@ -18,7 +18,9 @@ async function getStudent(studentId) {
   if (!student) {
     throw new Error("El estudiante no existe en la base de datos");
   }
-  return student;
+  const {adminId, ...studentData} = student.dataValues;
+  //Devolvemos el student sin el adminId
+  return studentData;
 }
 
 //Buscar estudiante activo por nombre o correo electrónico
