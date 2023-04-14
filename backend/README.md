@@ -12,7 +12,11 @@ docker-compose up -d
 6. Ejecutar las migraciones: ```npx sequelize-cli db:migrate``` 
 
 7. Ejecutar migraciones de los seeders:
-    ```npx sequelize-cli db:seed --seed 20230413023626-student-user.js```
+    Deshacer los seeds si existen:
+    ```npx sequelize-cli db:seed:undo:all```
+
+    Correr todos los seeds
+    ```npx sequelize-cli db:seed:all```
 
 8. Levantar el proyecto: ```npm start``` 
 
