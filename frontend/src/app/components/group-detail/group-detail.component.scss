@@ -11,60 +11,60 @@ body{
   .week-navbar{
     display: flex;
     justify-content: space-between;
-  
+
     mat-card{
       width: 23%;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       cursor: pointer;
-  
+
       mat-card-content{
         text-align: center;
         font-size: map-get(variables.$font-sizes , "subtitle" );
         font-weight: 800;
         padding: 0.3rem;
       }
-      
+
     }
     mat-card:first-child{
       background-color: map-get(variables.$colors, "primary");
       color: #ffff;
     }
-  
+
     mat-card:hover{
       background-color: map-get(variables.$colors, "primary");
       color: #ffff;
     }
   }
-  
+
   .container-group-info{
     padding-top: 3rem;
     display: grid;
     grid-template-areas: '1 2';
     justify-content: space-evenly;
     margin-bottom: 2rem;
-  
+
     h4{
       font-size: map-get(variables.$font-sizes , "text" );
       font-weight: 700;
       margin-bottom: 2rem;
     }
-  
+
     .item-list{
       margin-bottom: 1rem;
     }
-  
+
     .row{
       display: flex;
       text-align: center;
     }
-      
-      
+
+
     .column{
       flex: 1;
       margin-right: 1rem;
 
     }
-      
+
   }
 
   .content{
@@ -89,7 +89,10 @@ body{
       gap: 43%;
       grid-template-areas: '1 2';
       justify-content: center;
-
+      button{
+        background: none;
+        border: none;
+      }
       .meet1, .meet2 {
         cursor: pointer;
         margin-bottom: 0.7rem;
@@ -103,7 +106,7 @@ body{
     }
   }
 
-  
+
   .table-info-week{
     padding: 0 1.5rem;
     border-collapse: collapse;
@@ -118,7 +121,7 @@ body{
       margin-right: 0.5rem;
       cursor: pointer;
     }
-    
+
     input[type="checkbox"]:checked {
       background-color: map-get(variables.$colors, "light");
       border: 1px solid map-get(variables.$colors, "light");
@@ -133,7 +136,7 @@ body{
       background-color: map-get(variables.$colors, "light");
       border: 2px solid white;
     }
-    
+
     p{
       display: inline;
       margin-right: 3rem;
@@ -142,7 +145,7 @@ body{
     td, th {
       border: none;
     }
-  
+
     .activity-week{
       width: 100%;
       height: 3rem;
@@ -186,5 +189,34 @@ body{
       border: none;
     }
   }
-  
+
+}
+
+@media (max-width:1130px){
+
+}
+
+
+@media (max-width:890px){
+  body{
+    .week-navbar{
+      flex-flow: column;
+      mat-card{
+        width: 100%;
+        margin-bottom: 2vh;
+      }
+    }
+
+    .container-group-info{
+      .technologies{
+        .titulo-2{
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+        }
+      }
+     }
+  }
 }
