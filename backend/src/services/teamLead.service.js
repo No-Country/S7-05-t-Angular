@@ -2,13 +2,34 @@ const { TeamLead, Student, Team } = require("../database/models");
 const studentService = require("../services/student.service");
 const { models } = require("../database/db");
 
+// Obtener todos los team Lead
+async function getAllTeamLeads(teamLeadId) {
+  const teamLeads = await models.TeamLead.findAll({
+    attributes: ["id"],
+    include: [
+      {
+        model: models.Student,
+        as: "Student",
+        attributes: ["id", "name", "email", "phone", "isTeamLead", "isActive"],
+      },
+    ],
+  });
+  return teamLeads;
+}
+
 //Obtener un Team Lead
 async function getTeamLead(teamLeadId) {
   // Verificar que el team lead existe en la base de datos
   const teamLead = await models.TeamLead.findOne({
-    where: {id: teamLeadId},
-    attributes: ['id', 'studentId'],
-    include: [{model: models.Student, as: 'Student'}]
+    where: { id: teamLeadId },
+    attributes: ["id"],
+    include: [
+      {
+        model: models.Student,
+        as: "Student",
+        attributes: ["id", "name", "email", "phone", "isTeamLead", "isActive"],
+      },
+    ],
   });
 
   //No se ha encontrado el team lead
@@ -19,38 +40,39 @@ async function getTeamLead(teamLeadId) {
 }
 
 async function createTeamLead(studentId) {
-
   // Verificar que el estudiante no tenga el rol de Team Lead:
-  const teamLeadExits = await studentService.getStudent(studentId);    
+  const teamLeadExits = await studentService.getStudent(studentId);
 
   if (teamLeadExits.isTeamLead) {
-    throw new Error('El estudiante ya tiene el rol de Team Lead');
+    throw new Error("El estudiante ya tiene el rol de Team Lead");
   }
 
   // Verificar que el estudiante existe en la base de datos
   const student = await studentService.getStudent(studentId);
 
   // Verificar que el estudiante esté activo
-  if(!student.isActive){
+  if (!student.isActive) {
     throw new Error("El estudiante no está activo");
   }
 
   // Crear el nuevo team lead
   const newTeamLead = await models.TeamLead.create({ studentId });
-  
+
   // Actualizar la columna isTeamLead en la tabla Student
-  await models.Student.update({ isTeamLead: true }, {
-    where: { id: studentId }
-  });
+  await models.Student.update(
+    { isTeamLead: true },
+    {
+      where: { id: studentId },
+    }
+  );
 
   teamLeadExits.isTeamLead = true;
-  const { adminId, ...teamLeadData } = newTeamLead.dataValues;
+  const { adminId, updatedAt, createdAt, ...teamLeadData } = newTeamLead.dataValues;
   return teamLeadData;
 }
 
-  
-  
 module.exports = {
+  getAllTeamLeads,
   createTeamLead,
   getTeamLead,
 };
