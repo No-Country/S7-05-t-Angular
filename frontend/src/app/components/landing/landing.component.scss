@@ -46,4 +46,162 @@ main{
     }
   }
 }
+@media (max-width:1300px){
+  main{
+    section{
+      .buttons{
+        button{
+          color: c.$white;
+          background-color: c.$buttons;
+          width: 80%;
+          height: 6.5vh;
+          margin: 2vh 0;
+          border-radius: 100px;
+        }
+      }
+    }
+  }
+}
+@media (max-width:1024px) {
+  main{
+    background: c.$primary;
+    height: 100vh;
+    color: c.$white;
+    section{
+
+      article{
+        h2{
+          font-size: 4rem;
+          line-height: 4rem;
+        }
+      }
+      .buttons{
+        flex-flow: column;
+        button{
+          color: c.$white;
+          background-color: c.$buttons;
+          width: 100%;
+          height: 6.5vh;
+          margin: 2vh 0;
+          border-radius: 100px;
+        }
+      }
+      .images{
+        .img-1{
+          position:relative;
+          animation: rotate 20s linear infinite;
+          top: -15vh;
+          left: 22vh;
+          width: 60%;
+        }
+        .img-2{
+          position:relative;
+          animation: rotate 20s linear infinite;
+          top: 17vh;
+          right: -12vh;
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+@media (max-width:990px){
+  main{
+    section{
+      padding: 0 3vh;
+    }
+  }
+}
+@media (max-width:850px){
+  main{
+    background: c.$primary;
+    height: 100vh;
+    color: c.$white;
+    section{
+      article{
+        h2{
+          font-size: 4rem;
+          line-height: 4rem;
+        }
+      }
+      .buttons{
+        flex-flow: column;
+        button{
+          color: c.$white;
+          background-color: c.$buttons;
+          width: 100%;
+          height: 6.5vh;
+          margin: 2vh 0;
+          border-radius: 100px;
+        }
+      }
+      .images{
+        .img-1{
+          position:relative;
+          animation: rotate 20s linear infinite;
+          top: -15vh;
+          left: 22vh;
+          width: 60%;
+        }
+        .img-2{
+          position:relative;
+          animation: rotate 20s linear infinite;
+          top: 17vh;
+          right: -12vh;
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:880px){
+  main{
+    section{
+      justify-content: center;
+      align-items: center;
+      flex-flow: column-reverse;
+      article{
+        h2{
+          font-size: 4rem;
+          line-height: 4rem;
+        }
+      }
+      .buttons{
+        flex-flow: column;
+        button{
+          color: c.$white;
+          background-color: c.$buttons;
+          width: 100%;
+          height: 6.5vh;
+          margin: 2vh 0;
+          border-radius: 100px;
+        }
+      }
+      .images{
+        flex-flow: column;
+        padding: 5vh;
+        .img-1{
+          position:relative;
+          animation: none;
+          top: -1vh;
+          left: -4vh;
+          width: 17%;
+        }
+        .img-2{
+          position:relative;
+          animation: none;
+          top: -1vh;
+          right: -5vh;
+          width: 14%;
+        }
+      }
+    }
+  }
+}
+@media(max-width: 768px) {
+ .mat-dialog-container.dialog-container{
+  max-width: 100%;
+ }
+}
 
