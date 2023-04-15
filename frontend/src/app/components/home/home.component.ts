@@ -11,7 +11,7 @@ import { first } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  user: Usuario | null;
+  user: Usuario | null = new Usuario();
   loading: boolean = false;
   grupos: Array<Grupo> = new Array<Grupo>();
   teamLeaders: Array<Usuario> = new Array<Usuario>();
@@ -21,7 +21,7 @@ export class HomeComponent {
     private _authenticationService: AuthenticationService,
     private _gruposService: GruposService,
   ) {
-    this.user = this._authenticationService.userValue;
+    // this.user = this._authenticationService.userValue;
   }
   
   ngOnInit() {
@@ -56,7 +56,12 @@ export class HomeComponent {
           {id: 3, turno: 'T', seleccionado: 7, numero: 11, stack: 'Python'}]},
 
     ]
-    this.user = this._authenticationService.userValue;
+    this.user = this.parseLocalStorage(localStorage.getItem('user') || "") ;  
+  }
+
+  parseLocalStorage(user: string): Usuario {
+    let json = JSON.parse(user);
+    return new Usuario(json.id, " ", json.apellido, json.nombre, json.email, json.isAdmin, json.isTeamLeader, json.habilitado, json.grupoId, json.token, json.rol, json.stack) 
   }
 
   onClick() {
