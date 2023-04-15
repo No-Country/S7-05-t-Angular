@@ -92,16 +92,27 @@ body{
       button{
         background: none;
         border: none;
+        color: rgb(132, 129, 129);
+        &:hover{
+          color: #000;
+        }
       }
       .meet1, .meet2 {
         cursor: pointer;
         margin-bottom: 0.7rem;
         display: inline;
         font-size: map-get(variables.$font-sizes , "text" );
+
       }
 
-      .meet2 p{
-        color: rgb(132, 129, 129);
+      #meet, #meet1{
+        display: none;
+      }
+      .dropdown{
+        display: none;
+      }
+      .dropOFF{
+        display: none;
       }
     }
   }
@@ -226,11 +237,36 @@ body{
       .meet-number{
         display: flex;
         flex-flow: column;
-        position: relative
+        position: relative;
+        .button-clicked{
+            color: #000;
+          }
+        .meet2{
+          .button-clicked{
+            color:#000;
+          }
+        }
+
+        .dropdown{
+          height: 100%;
+          width: 100%;
+          display: block;
+        }
       }
     }
     .table-info-week{
       display: none;
     }
+    .button-container{
+      display: flex;
+      justify-content: center;
+
+      .submit-meet-information{
+        margin: 2rem 0;
+        padding: 0.5rem 2rem;
+        width: 70%;
+      }
+    }
   }
+
 }
