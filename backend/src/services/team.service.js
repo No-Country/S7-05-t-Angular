@@ -4,12 +4,22 @@ const { models } = require("../database/db");
 const getAllTeam = async () => {
   const teams = await models.Team.findAll({
     order: [["name", "ASC"]],
-    attributes: ["id", "name", "isActive", "team_leadId"],
+    attributes: ["id", "name", "isActive"],
     include: [
       {
         model: models.Selected,
         as: "selected",
         attributes: ["id", "name", "isActive"]
+      },
+      {
+        model: models.TeamLead,
+        as: "teamLead",
+        attributes: ["id"],
+        include: [{
+          model: models.Student,
+          as: "Student",
+          attributes: ["id", "name", "email"]
+        }]
       }
     ]
   });

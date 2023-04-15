@@ -15,6 +15,17 @@ const getAllActiveStudents = async (req, res, next) => {
   }
 };
 
+//Obtener todos los estudiantes con sus equipos
+const getStudentsWithTeams = async(req, res, next) => {
+  try {
+    const studentsTeams = await studentService.getStudentsWithTeams()
+    return studentsTeams
+  } catch (error) {
+    next(error);
+  }
+
+}
+
 //Obtener un estudiante en particular por id
 const getOneStudent = async (req, res, next) => {
   try {
@@ -42,4 +53,5 @@ module.exports = {
   getAllActiveStudents,
   getOneStudent,
   searchStudent,
+  getStudentsWithTeams
 };

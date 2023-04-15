@@ -17,6 +17,7 @@ const getTeamLead = async (req, res, next) => {
     const teamLead = await teamLeadService.getTeamLead(teamLeadId);
     res.status(200).json({ success: true, teamLead });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
@@ -30,6 +31,27 @@ const createTeamLead = async (req, res, next) => {
       .status(201)
       .json({ success: "Team Lead creado correctamente", msg: teamLead });
   } catch (error) {
+    console.log(error);
+    //return res.status(500).json({ error: error.message });
+    next(error);
+  }
+};
+
+// Asignar un team lead a un equipo
+const addTeamLeadtoTeam = async (req, res, next) => {
+  try {
+    const teamLeadId = req.body.teamLeadId;
+    const teamId = req.body.teamId;
+
+    const teamUpdateTl = await teamLeadService.addTeamLeadtoTeam(teamLeadId, teamId)
+
+    res.status(200).json({
+      success: true,
+      message: "Líder de equipo asignado exitosamente",
+      teamUpdateTl
+    });
+  } catch (error) {
+    console.log(error);
     next(error);
   }
 };
@@ -38,4 +60,5 @@ module.exports = {
   getAllTeamLeads,
   getTeamLead,
   createTeamLead,
+  addTeamLeadtoTeam
 };

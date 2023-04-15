@@ -39,7 +39,7 @@ const TeamSchema = {
     onDelete: "SET NULL",
   },
   selectedId: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,
     references: {
       model: SELECTED_TABLE,
       key: "id",
@@ -67,10 +67,15 @@ class Team extends Model {
       through: "Team_Technologies",
       foreignKey: "teamId",
     });
-    this.hasMany(models.Student, {
-      foreignKey: "teamId",
-      as: "students",
+    this.belongsToMany(models.Student, {
+      through: models.TeamStudent,
+      // foreignKey: "teamId",
+      // as: "students",
     });
+    // this.hasMany(models.Student, {
+    //   foreignKey: "teamId",
+    //   as: "students",
+    // });
   }
 
   static config(sequelize) {
