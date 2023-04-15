@@ -6,21 +6,21 @@ const TEAM_LEAD_TABLE = "Team_leads";
 
 const TeamLeadSchema = {
   id: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
     primaryKey: true,
-    autoIncrement: true,
   },
   studentId: {
-    type: Sequelize.INTEGER,
-      references: {
-        model: STUDENT_TABLE,
-        key: 'id',
-      },
-      onUpdate: 'CASCADE',
-      onDelete: 'SET NULL',
+    type: Sequelize.UUID,
+    references: {
+      model: STUDENT_TABLE,
+      key: "id",
+    },
+    onUpdate: "CASCADE",
+    onDelete: "SET NULL",
   },
   adminId: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.UUID,  
     references: {
       model: ADMIN_TABLE,
       key: "id",

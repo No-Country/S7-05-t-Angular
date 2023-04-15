@@ -7,9 +7,9 @@ module.exports = {
     await queryInterface.createTable(SELECTED_TABLE, {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
       },
       name: {
         allowNull: false,
@@ -28,7 +28,7 @@ module.exports = {
         defaultValue: true,
       },
       adminId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,        
         references: {
           model: ADMIN_TABLE,
           key: "id",

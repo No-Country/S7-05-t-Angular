@@ -6,9 +6,9 @@ const SELECTED_TABLE = "Selected";
 const SelectedSchema = {
   id: {
     allowNull: false,
-    autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
   },
   name: {
     allowNull: false,
@@ -27,7 +27,7 @@ const SelectedSchema = {
     defaultValue: true,
   },
   adminId: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.UUID,  
     references: {
       model: ADMIN_TABLE,
       key: "id",
@@ -38,27 +38,25 @@ const SelectedSchema = {
 };
 
 class Selected extends Model {
-    static associate(models) {      
-      this.belongsTo(models.Admin, {
-        foreignKey: "adminId",
-        as: "admin",
-      });
-      this.hasMany(models.Team, {
-        foreignKey: "selectedId",
-        as: "teams",
-      });
-    }
-  
-    static config(sequelize) {
-      return {
-        sequelize,
-        tableName: SELECTED_TABLE,
-        modelName: "Selected",
-        timestamps: false,
-      };
-    }
+  static associate(models) {
+    this.belongsTo(models.Admin, {
+      foreignKey: "adminId",
+      as: "admin",
+    });
+    this.hasMany(models.Team, {
+      foreignKey: "selectedId",
+      as: "teams",
+    });
   }
 
-  module.exports = { SELECTED_TABLE, SelectedSchema, Selected };
+  static config(sequelize) {
+    return {
+      sequelize,
+      tableName: SELECTED_TABLE,
+      modelName: "Selected",
+      timestamps: false,
+    };
+  }
+}
 
-  
+module.exports = { SELECTED_TABLE, SelectedSchema, Selected };

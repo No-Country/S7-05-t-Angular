@@ -1,4 +1,4 @@
-const { Op } = require('sequelize');
+const { Op } = require("sequelize");
 const { TeamLead, Student, Team } = require("../database/models");
 const { StudentSchema } = require("../database/models/student.model");
 const { models } = require("../database/db");
@@ -9,7 +9,7 @@ const getActiveStudents = async () => {
     where: { isActive: true },
   });
   return activeStudents;
-}
+};
 
 //Obtener un estudiante por id
 async function getStudent(studentId) {
@@ -18,7 +18,7 @@ async function getStudent(studentId) {
   if (!student) {
     throw new Error("El estudiante no existe en la base de datos");
   }
-  const {adminId, ...studentData} = student.dataValues;
+  const { adminId, ...studentData } = student.dataValues;
   //Devolvemos el student sin el adminId
   return studentData;
 }
@@ -29,18 +29,16 @@ const searchStudent = async (term) => {
     where: {
       [Op.or]: [
         { name: { [Op.iLike]: `%${term}%` } },
-        { email: { [Op.iLike]: `%${term}%` } }
+        { email: { [Op.iLike]: `%${term}%` } },
       ],
-     isActive: true
-    }
-  })
+      isActive: true,
+    },
+  });
   return students;
-}
+};
 
 //Crear un estudiante
-async function createStudent() {
-  
-}
+async function createStudent() {}
 module.exports = {
   getActiveStudents,
   getStudent,
