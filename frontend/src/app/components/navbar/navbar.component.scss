@@ -1,7 +1,7 @@
 @use './../../../assets/theme/colors.scss' as c;
 
 :host{
-  position: static;
+  position: sticky;
   top:0;
   z-index: 20;
 }

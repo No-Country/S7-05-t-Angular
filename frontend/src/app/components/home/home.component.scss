@@ -11,14 +11,17 @@ html, body, app-root {
     width: 100%;
     margin: 0;
 }
-    
 
+.sidenav-container{
+  height: 90vh;
+}
 .sidenav {
     background: linear-gradient(180deg, #030428 41.93%, #021E55 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    height: 100%;
 }
 
 .sidenav-links {
@@ -38,7 +41,11 @@ html, body, app-root {
     margin: 2vh 0;
     border-radius: 100px;
 }
-    
+
+.home-container{
+  height: 100%;
+  overflow: scroll;
+}
 
 .home-card {
     display: flex;
@@ -53,7 +60,7 @@ html, body, app-root {
         text-align: justify;
         color: #000000;
     }
-} 
+}
 
 
 .home-card-title {
@@ -115,7 +122,7 @@ html, body, app-root {
     max-width: 271px;
     position: absolute;
     bottom: -241px;
-    left: 0;    
+    left: 0;
 }
 
 .sidenav-title {
@@ -193,4 +200,33 @@ html, body, app-root {
     position: absolute;
     right: 0;
     bottom: 0;
+}
+
+@media(max-width:890px){
+  .sidenav-container{
+    height: 100%;
+  }
+  .sidenav-content-teamleader{
+    padding: 5vh;
+    .sidenav-img{
+      margin: 0;
+    }
+  }
+  .sidenav-content-admin{
+    padding-bottom:2vh;
+  }
+
+  .home-container{
+    padding: 0;
+    overflow: unset;
+    .home-card{
+      margin: 5vh;
+      margin-bottom: 7vh;
+    }
+  }
+  .teams{
+    .team-card{
+      margin:2vh 5vh;
+    }
+  }
 }

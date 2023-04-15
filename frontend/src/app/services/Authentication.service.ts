@@ -28,12 +28,12 @@ export class AuthenticationService {
     }
 
     // login(userName: string, password: string): Observable<any> {
-        
+
     //     let params = JSON.stringify({ usuario: userName, password: password });
     //     return from(this._http.post(this.url + 'login', params, this.httpOptions)).pipe(
     //         map((res) => res
     //     ));
-          
+
     // }
     public get userValue() {
         return this.userSubject.value;
@@ -46,7 +46,7 @@ export class AuthenticationService {
       }
       if (email === 'admin@gmail.com') {
         user = new Usuario(2, password, 'Garcia', 'Javier', email, 1, 0, 1);
-      } 
+      }
       // localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('user', JSON.stringify(user));
       this.userSubject.next(user);
@@ -71,7 +71,7 @@ export class AuthenticationService {
     //           return true;
     //         }
     //       }
-    //     } 
+    //     }
     //     return false
     // }
 
