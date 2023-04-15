@@ -46,6 +46,14 @@ const MEMBERS_DATA: Member[] = [
   styleUrls: ['./group-detail.component.scss']
 })
 export class GroupDetailComponent {
+  isMeetButtonClicked = false;
+
+  toogleButton(){
+    if (window.innerWidth < 890) {
+      this.isMeetButtonClicked = !this.isMeetButtonClicked;
+    }
+  }
+
   displayedColumns: string[] = ['fullName', 'rol', 'meeting1', 'activity'];
   members: Member[];
 

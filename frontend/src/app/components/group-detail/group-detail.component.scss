@@ -217,6 +217,20 @@ body{
 
         }
       }
-     }
+    }
+    .content{
+      .meet-container{
+        display: none;
+      }
+
+      .meet-number{
+        display: flex;
+        flex-flow: column;
+        position: relative
+      }
+    }
+    .table-info-week{
+      display: none;
+    }
   }
 }

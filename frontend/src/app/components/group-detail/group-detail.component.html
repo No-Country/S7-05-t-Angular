@@ -74,14 +74,14 @@
         <div class="meet-container"></div>
         <div class="meet-number">
             <div class="meet1">
-                <button><p>MEET 1</p></button>
+                <button (click)="toogleButton()"><p>MEET 1</p></button>
             </div>
             <div class="meet2">
-               <button><p>MEET 2</p></button>
+               <button (click)="toogleButton()"><p>MEET 2</p></button>
             </div>
         </div>
     </div>
-    <div class="table-info-week">
+    <div [ngClass]="{'dropdown': isMeetButtonClicked, 'table-info-week': !isMeetButtonClicked}" >
         <table mat-table [dataSource]="members">
 
             <ng-container matColumnDef="fullName">
