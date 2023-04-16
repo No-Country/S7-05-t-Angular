@@ -35,12 +35,15 @@ const TeamStudentSchema = {
 
 class TeamStudent extends Model {
   static associate(models) {
-    this.belongsTo(models.Team, {
+    // this.belongsTo(models.Student, {
+    //   foreignKey: "studentId",
+    //   as: "students",
+    // });
+
+    models.Team.belongsToMany(models.Student, {
+      through: this,
       foreignKey: "teamId",
-      as: "teams",
-    });
-    this.belongsTo(models.Student, {
-      foreignKey: "studentId",
+      otherKey: "studentId",
       as: "students",
     });
   }

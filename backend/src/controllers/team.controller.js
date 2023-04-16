@@ -21,7 +21,18 @@ const getTeam = async (req, res, next) => {
   }
 };
 
+// Obtener teams y sus technologias
+const getTechnologyToTeam = async (req, res, next) => {
+  try {
+    const teamTechnology = await teamService.getTechnologyTeam();
+    res.status(200).json({ success: true, data: teamTechnology });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getTeam,
   getAllTeam,
+  getTechnologyToTeam,
 };

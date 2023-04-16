@@ -9,19 +9,30 @@ const getAllTeam = async () => {
       {
         model: models.Selected,
         as: "selected",
-        attributes: ["id", "name", "isActive"]
+        attributes: ["id", "name", "isActive"],
       },
       {
         model: models.TeamLead,
         as: "teamLead",
         attributes: ["id"],
-        include: [{
-          model: models.Student,
-          as: "Student",
-          attributes: ["id", "name", "email"]
-        }]
-      }
-    ]
+        include: [
+          {
+            model: models.Student,
+            as: "Student",
+            attributes: ["id", "name", "email"],
+          },
+        ],
+      },
+      {
+        model: models.Student,
+        as: "students",
+        through: {
+          model: models.TeamStudent,
+          attributes: [],
+        },
+        attributes: ["id", "name"],
+      },
+    ],
   });
   return teams;
 };
@@ -30,14 +41,35 @@ const getAllTeam = async () => {
 async function getTeam(teamId) {
   const team = await models.Team.findOne({
     where: { id: teamId },
-    attributes: ["id", "name", "isActive", "team_leadId"],
+    attributes: ["id", "name", "isActive"],
     include: [
       {
         model: models.Selected,
         as: "selected",
-        attributes: ["id", "name", "isActive"]
-      }
-    ]
+        attributes: ["id", "name", "isActive"],
+      },
+      {
+        model: models.TeamLead,
+        as: "teamLead",
+        attributes: ["id"],
+        include: [
+          {
+            model: models.Student,
+            as: "Student",
+            attributes: ["id", "name", "email"],
+          },
+        ],
+      },
+      {
+        model: models.Student,
+        as: "students",
+        through: {
+          model: models.TeamStudent,
+          attributes: [],
+        },
+        attributes: ["id", "name"],
+      },
+    ],
   });
 
   if (!team) {
@@ -46,9 +78,28 @@ async function getTeam(teamId) {
   return team;
 }
 
+// Obtener teams y sus technologias
+async function getTechnologyTeam() {
+  const teamsTech = await models.Team.findAll({
+    include: [
+      {
+        model: models.Technology,
+        as: "technologies",
+        through: {
+          model: models.TeamTechnology,
+          attributes: [],
+        },
+        attributes: ["id", "name"], // atributos de la entidad Technology
+      },
+    ],
+  });
+  return teamsTech;
+}
+
 module.exports = {
   getTeam,
   getAllTeam,
+  getTechnologyTeam,
 };
 
 //Crear un team
