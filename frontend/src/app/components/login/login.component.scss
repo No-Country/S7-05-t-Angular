@@ -19,7 +19,7 @@ form{
 .login {
   text-align: center;
   position:relative;
-  left: -45vh;
+  left: -50vh;
   width: 70%;
 
 
@@ -85,3 +85,30 @@ form{
 //     width: 312px;
 // }
 
+
+@media (max-width:768px){
+  :host{
+    height: 80vh;
+    display: block;
+  }
+  .container{
+    flex-flow: column;
+    height: 100%;
+  }
+  .img-1{
+    left: -3vh;
+    top: -28vh;
+  }
+  .img-2{
+    left: 10vh;
+    bottom: -27vh;
+  }
+  .login{
+    left: 0;
+    width: 100%;
+    top: -57vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+}

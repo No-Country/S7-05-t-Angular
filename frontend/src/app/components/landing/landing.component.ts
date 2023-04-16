@@ -15,6 +15,8 @@ export class LandingComponent {
   openModal() {
     const dialogRef = this.dialog.open(LoginComponent,{
       maxWidth:'750px',
+      maxHeight:'700px',
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
