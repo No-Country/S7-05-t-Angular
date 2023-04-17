@@ -1,7 +1,16 @@
 'use strict'
 
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'secretkey123456'; //cambiar!!!
+
+const crypto = require('crypto');
+
+const generateSecretKey = () => {
+  const length = 32;
+  return crypto.randomBytes(length).toString('hex');
+};
+
+const SECRET_KEY = generateSecretKey();
+
 
 exports.authorization = function (req,res,next) {
     let token = req.headers['authorization'] 

@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.use(express.json());
 
-router.get("/teamleader", loginTL);
-router.get("/admin", loginAdmin);
+router.post("/teamleader", loginTL);
+router.post("/admin", loginAdmin);
 
 
 
