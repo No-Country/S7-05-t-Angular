@@ -50,42 +50,6 @@ export class GroupDetailComponent {
   isMeetButtonClicked = false;
   meetElement: any;
 
-  toggleButton(){
-    const meetElement = document.getElementById('meet');
-    if (window.innerWidth < 890) {
-
-      this.isMeetButtonClicked = !this.isMeetButtonClicked;
-
-      if (meetElement) {
-        if (this.isMeetButtonClicked) {
-          meetElement.setAttribute('id', 'meet');
-        } else if (window.innerWidth < 890) {
-          meetElement.removeAttribute('id');
-        }
-      }
-    }else{
-      this.meetElement.style.display = 'none';
-    }
-  }
-
-  toggleButton1(){
-    const meetElement = document.getElementById('meet1');
-    if (window.innerWidth < 890) {
-
-      this.isMeetButtonClicked1 = !this.isMeetButtonClicked1;
-
-      if (meetElement) {
-        if (this.isMeetButtonClicked) {
-          meetElement.setAttribute('id', 'meet1');
-        } else if (window.innerWidth < 890) {
-          meetElement.removeAttribute('id');
-        }
-      }
-    }else{
-      this.meetElement.style.display = 'none';
-    }
-  }
-
 
   displayedColumns: string[] = ['fullName', 'rol', 'meeting1', 'activity'];
   members: Member[];

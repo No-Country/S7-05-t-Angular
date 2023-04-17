@@ -8,26 +8,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
-// compoents
+// components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { GroupDetailComponent } from './components/group-detail/group-detail.component';
+import { LandingComponent } from './components/landing/landing.component';
 // import { PerfilComponent } from './components/perfil/perfil.component';
-// material
+
 /* Angular Material */
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatIconModule} from '@angular/material/icon';
-import { LandingComponent } from './components/landing/landing.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import {AuthenticationService} from './services/Authentication.service';
 import {GruposService} from './services/Grupos.service';
@@ -61,7 +62,8 @@ import {GruposService} from './services/Grupos.service';
     MatCheckboxModule,
     MatDialogModule,
     MatCardModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatExpansionModule
   ],
   providers: [AuthenticationService, GruposService],
   bootstrap: [AppComponent]
