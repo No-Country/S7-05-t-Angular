@@ -7,7 +7,7 @@ router.use(express.json());
 
 router.get("/", getAllTeamLeads);
 router.get("/:id", getTeamLead);
-router.get("/teams/:id", getTeams);
+router.get("/teams/:id?", getTeams);
 router.post("/create/:id", createTeamLead);
 
 
