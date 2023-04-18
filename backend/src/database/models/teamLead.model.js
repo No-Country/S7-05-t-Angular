@@ -32,7 +32,10 @@ const TeamLeadSchema = {
 
 class TeamLead extends Model {
   static associate(models) {
-    this.belongsTo(models.Student, { foreignKey: "studentId" });
+    this.belongsTo(models.Student, { 
+      foreignKey: "studentId",
+      as: "student",
+    });
     this.belongsTo(models.Admin, {
       foreignKey: "adminId",
       as: "admin",

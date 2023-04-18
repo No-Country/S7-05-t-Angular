@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { AuthenticationService } from '../../services/Authentication.service';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -12,7 +14,7 @@ export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
   subscription: Subscription = new Subscription;
 
-  constructor( private router: Router) {
+  constructor( private router: Router, private _authenticationService: AuthenticationService) {
     router.events.subscribe( (val) => {
       if (val instanceof NavigationEnd) {
         if (val.url == '/login' || val.url == '/') {
@@ -29,8 +31,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onClickLogOut():void {
-      // this._authenticationService.logout();
-      this.router.navigateByUrl('/login');
+      this._authenticationService.logout();
   }
 
 }
