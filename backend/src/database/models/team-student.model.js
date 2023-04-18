@@ -31,6 +31,16 @@ const TeamStudentSchema = {
     onUpdate: "CASCADE",
     onDelete: "CASCADE",
   },
+  createdAt: {
+    allowNull: false,
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.literal("NOW()"),
+  },
+  updatedAt: {
+    allowNull: false,
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.literal("NOW()"),
+  },
 };
 
 class TeamStudent extends Model {

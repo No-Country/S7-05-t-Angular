@@ -70,15 +70,23 @@ class Student extends Model {
       foreignKey: "studentId",
     });
 
-
     this.belongsToMany(models.Team, {
-      as: 'teams',
+      as: "teams",
       through: models.TeamStudent,
       foreignKey: "studentId",
       // otherKey: "teamId"
     });
 
-    
+    this.hasMany(models.Attendance, {
+      foreignKey: "studentId",
+      as: "attendance",
+    });
+
+    this.hasMany(models.StudentActivity, {
+      foreignKey: "studentId",
+      as: "studentActivity",
+    });
+
     this.hasOne(models.TeamLead, {
       foreignKey: "studentId",
       as: "teamLead",

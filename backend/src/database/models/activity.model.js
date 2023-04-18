@@ -17,11 +17,14 @@ const ActivitySchema = {
 
 class Activity extends Model {
   static associate(models) {
-    // this.belongsToMany(models.Student, {
-    //     through: models.StudentActivity,
-    //     foreignKey: "activity_id",
-    //     as: "students",
+    // this.belongsToMany(models.StudentActivity, {
+    //     foreignKey: "activityId",
+    //     as: "studentActivity",
     //   });
+    this.hasMany(models.StudentActivity, {
+      foreignKey: "activityId",
+      as: "studentActivity",
+    });
   }
 
   static config(sequelize) {

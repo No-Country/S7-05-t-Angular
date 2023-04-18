@@ -1,59 +1,59 @@
-'use strict';
+"use strict";
+
+const { MEETING_TABLE } = require("../models/meeting.model");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Meetings', {
+    await queryInterface.createTable(MEETING_TABLE, {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
       },
-      week_number: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      team_id: {
+
+      teamId: {
         allowNull: false,
         type: Sequelize.UUID,
         references: {
-          model: 'Teams',
-          key: 'id'
+          model: "Teams",
+          key: "id",
         },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
-      week_id: {
+      weekId: {
         allowNull: false,
         type: Sequelize.UUID,
         references: {
-          model: 'Weeks',
-          key: 'id'
+          model: "Weeks",
+          key: "id",
         },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       meet_number: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       date: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
-      Observation: {
+      observation: {
         allowNull: true,
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
-      created_at: {
+      createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Meetings');
-  }
+    await queryInterface.dropTable(MEETING_TABLE);
+  },
 };

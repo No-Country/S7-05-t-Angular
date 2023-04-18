@@ -1,11 +1,10 @@
 'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
-'use strict';
+const { ACTIVITY_TABLE } = require('../models/activity.model');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Activity', {
+    await queryInterface.createTable(ACTIVITY_TABLE, {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -30,7 +29,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Activity');
+    await queryInterface.dropTable(ACTIVITY_TABLE);
   }
 };
 

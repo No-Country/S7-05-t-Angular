@@ -2,7 +2,7 @@ const { Model, DataTypes, Sequelize } = require("sequelize");
 
 //const MEETING_TABLE = require("./meeting.model").MEETING_TABLE;
 
-const WEEK_TABLE = "Week";
+const WEEK_TABLE = "Weeks";
 
 const WeekSchema = {
   id: {

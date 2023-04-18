@@ -11,10 +11,6 @@ const MeetingSchema = {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
   },
-  week_number: {
-    allowNull: false,
-    type: DataTypes.INTEGER,
-  },
   teamId: {
     allowNull: false,
     type: Sequelize.UUID,
@@ -43,7 +39,7 @@ const MeetingSchema = {
     allowNull: false,
     type: DataTypes.DATE,
   },
-  Observation: {
+  observation: {
     allowNull: true,
     type: DataTypes.TEXT,
   },
@@ -52,9 +48,9 @@ const MeetingSchema = {
 class Meeting extends Model {
   static associate(models) {
     this.hasMany(models.Attendance, {
-        foreignKey: "meetingId",
-        as: "attendance",
-      });
+      foreignKey: "meetingId",
+      as: "attendance",
+    });
     this.belongsTo(models.Week, {
       foreignKey: "weekId",
       as: "week",
@@ -62,7 +58,7 @@ class Meeting extends Model {
     this.belongsTo(models.Team, {
       foreignKey: "teamId",
       as: "team",
-    });    
+    });
   }
 
   static config(sequelize) {
