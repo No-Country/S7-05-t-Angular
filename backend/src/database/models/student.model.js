@@ -5,9 +5,9 @@ const STUDENT_TABLE = "Students";
 const StudentSchema = {
   id: {
     allowNull: false,
-    autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
   },
   name: {
     allowNull: false,
@@ -35,7 +35,7 @@ const StudentSchema = {
     defaultValue: true,
   },
   teamId: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.UUID,
     allowNull: true,
     references: {
       model: "Teams",
@@ -45,7 +45,7 @@ const StudentSchema = {
     onDelete: "SET NULL",
   },
   adminId: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.UUID,
     references: {
       model: ADMIN_TABLE,
       key: "id",

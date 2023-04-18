@@ -4,10 +4,10 @@ const ADMIN_TABLE = "Admins";
 
 const AdminSchema = {
   id: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
     allowNull: false,
     primaryKey: true,
-    autoIncrement: true,
   },
   name: {
     type: DataTypes.STRING,
