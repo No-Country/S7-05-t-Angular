@@ -61,18 +61,18 @@ export class AuthenticationService {
       this._router.navigate(['/login']);
   }
 
-    // isLoggedIn(): boolean {
-    //     let authToken = localStorage.getItem('ACCESS_TOKEN');
-    //     if (authToken !== null && authToken !== undefined) {
-    //       const expiration = localStorage.getItem("EXPIRES_IN");
-    //       if (expiration) {
-    //         const expiresAt = JSON.parse(expiration);
-    //         if (moment().isBefore(moment(expiresAt))) {
-    //           return true;
-    //         }
-    //       }
-    //     } 
-    //     return false
-    // }
+    isLoggedIn(): boolean {
+        let authToken = localStorage.getItem('ACCESS_TOKEN');
+        if (authToken !== null && authToken !== undefined) {
+          const expiration = localStorage.getItem("EXPIRES_IN");
+          if (expiration) {
+            const expiresAt = JSON.parse(expiration);
+            if (moment().isBefore(moment(expiresAt))) {
+              return true;
+            }
+          }
+        } 
+        return false
+    }
 
 }

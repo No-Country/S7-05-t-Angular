@@ -7,9 +7,9 @@ const TEAM_TABLE = "Teams";
 const TeamSchema = {
   id: {
     allowNull: false,
-    autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
   },
   name: {
     allowNull: false,
@@ -20,7 +20,7 @@ const TeamSchema = {
     defaultValue: true,
   },
   team_leadId: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,
     allowNull: true,
     references: {
       model: TEAM_TABLE,
@@ -30,7 +30,7 @@ const TeamSchema = {
     onDelete: "SET NULL",
   },
   adminId: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,    
     references: {
       model: ADMIN_TABLE,
       key: "id",
