@@ -6,7 +6,7 @@ const { models } = require("../database/db");
 async function getTeamLeaders() {
   // Verificar que el team lead existe en la base de datos
   const teamLeaders = await models.TeamLead.findAll({
-    include: [{model: models.Team, as: 'teams'}]
+    include: [{model: models.Team, as: 'teams'}, {model: models.Student, as: 'student'}]
   });
 
   //No se ha encontrado el team lead
