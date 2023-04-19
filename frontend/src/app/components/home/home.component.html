@@ -1,4 +1,4 @@
-<div class="container-fluid" *ngIf="user">
+<div class="container-fluid" *ngIf="user" style="height: 100%;">
     <div class="row sidenav-container">
         <div class="col-lg-3 sidenav">
             <div class="sidenav-content-teamleader d-flex justify-content-center flex-column align-items-center ">
@@ -6,7 +6,7 @@
                 <span class="sidenav-title"> {{user.nombre}} {{user.apellido}} </span>
                 <span class="sidenav-subtitle" *ngIf="user.isAdmin != null"> {{ getRol(user.isAdmin) }} </span>
             </div>
-            <div class="sidenav-content-admin d-flex justify-content-center flex-column align-items-center gap-3" *ngIf="user.isAdmin === 1">
+            <div class="sidenav-content-admin d-flex justify-content-center flex-column align-items-center gap-3 mt-4" *ngIf="user.isAdmin === 1">
                 <a class="sidenav-links"> Comentarios </a>
                 <a class="sidenav-links"> Reportes </a>
                 <a class="sidenav-links"> Configuracion </a>
@@ -21,9 +21,9 @@
                 </mat-card-header>
                 <mat-card-content>
                     <p *ngIf="user.isAdmin == 1">
-                        ¡Bienvenido a nuestra página web de administrador! Aquí encontrarás todos los recursos necesarios para gestionar eficazmente a tus team leaders. Podrás monitorizar, actualizar contenido y realizar un seguimiento detenido de cada grupo. 
+                        ¡Bienvenido a nuestra página web de administrador! Aquí encontrarás todos los recursos necesarios para gestionar eficazmente a tus team leaders. Podrás monitorizar, actualizar contenido y realizar un seguimiento detenido de cada grupo.
                         Estamos comprometidos con ofrecerte una experiencia de administración intuitiva y fácil de usar.                    </p>
-                    <p *ngIf="user.isAdmin == 0"> 
+                    <p *ngIf="user.isAdmin == 0">
                         Nuestra plataforma en línea está diseñada para ayudarte a gestionar y coordinar tu equipo de trabajo de manera más efectiva. Sabemos que liderar un equipo puede ser un desafío, por lo que hemos creado esta herramienta para facilitar el trabajo de los líderes de equipo y mejorar la colaboración en los proyectos.
                         En nuestra página web, encontrarás una interfaz fácil de usar que te permitirá ver el progreso de las tareas asignadas a los miembros de tu equipo también podrás asignarles roles y responsabilidades específicas.
                     </p>
@@ -54,7 +54,7 @@
                                 <!-- <span class="teamleaders-card-subtitle"> {{tl.rol}} </span> -->
                                 <span class="teamleaders-card-groups"> Grupos: </span>
                                 <span class="teamleaders-card-groups" *ngFor="let grupo of tl.teams">
-                                    {{grupo.name}} 
+                                    {{grupo.name}}
                                     <!-- {{grupo.seleccionado ? "S"+grupo.seleccionado : "C"+grupo.cohorte }} - {{grupo.numero != null ? grupo.numero < 10 ? "0"+grupo.numero : ""+grupo.numero : "" }} - {{grupo.turno}} - {{grupo.stack}}  -->
                                 </span>
                             </mat-card-content>
