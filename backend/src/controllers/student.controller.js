@@ -15,6 +15,16 @@ const getAllActiveStudents = async (req, res, next) => {
   }
 };
 
+//Obtener todos los estudiantes con sus equipos
+const getStudentsWithTeams = async (req, res, next) => {
+  try {
+    const studentsTeams = await studentService.getStudentsWithTeams();
+    return studentsTeams;
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Obtener un estudiante en particular por id
 const getOneStudent = async (req, res, next) => {
   try {
@@ -28,11 +38,11 @@ const getOneStudent = async (req, res, next) => {
 };
 
 //Obtener un estudiante en particular por nombre o email
-const searchStudent = async (req, res, next) => {  
+const searchStudent = async (req, res, next) => {
   try {
-    const term = req.params.term;   
+    const term = req.params.term;
     const students = await studentService.searchStudent(term);
-    res.status(200).json({ success: true, students })
+    res.status(200).json({ success: true, students });
   } catch (error) {
     next(error);
   }
@@ -42,4 +52,5 @@ module.exports = {
   getAllActiveStudents,
   getOneStudent,
   searchStudent,
+  getStudentsWithTeams,
 };

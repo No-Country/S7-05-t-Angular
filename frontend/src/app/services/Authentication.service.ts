@@ -39,20 +39,65 @@ export class AuthenticationService {
         return this.userSubject.value;
     }
 
-    login(email: string, password: string) {
-      let user = new Usuario();
-      if (email === 'teamleader@gmail.com') {
-        user = new Usuario(1, password, 'Diaz', 'Micaela', email, 0, 1, 1);
-      }
-      if (email === 'admin@gmail.com') {
-        user = new Usuario(2, password, 'Garcia', 'Javier', email, 1, 0, 1);
-      }
-      // localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('user', JSON.stringify(user));
-      this.userSubject.next(user);
-      console.log(user);
-      return user;
+    loginAdmin(email: string, password: string) {
+        let params = JSON.stringify({ email: email, password: password });
+        return from(this._http.post(this.url + 'login/admin', params, this.httpOptions)).pipe(
+            map((res) => {
+              let response = JSON.parse(JSON.stringify(res));
+              if (response.usuario) {
+                let usuario = response.usuario;
+                let user = new Usuario(
+                    usuario.id, 
+                    '', 
+                    usuario.name.split(' ')[1], 
+                    usuario.name.split(' ')[1], 
+                    usuario.email, 
+                    1, 
+                    0, 
+                    1
+                  );
+                localStorage.setItem('user', JSON.stringify(user));
+                this.userSubject.next(user);
+                localStorage.setItem("ACCESS_TOKEN", response.accessToken);
+                const expiresAt = moment().add(response.expiresIn, 'second');
+                localStorage.setItem("EXPIRES_IN", JSON.stringify(expiresAt.valueOf()));
+                return user;
+              } 
+              return null
+
+            }
+        ));
     }
+
+    loginTeamLeader(email: string, password: string) {
+      let params = JSON.stringify({ email: email, password: password });
+      return from(this._http.post(this.url + 'login/teamleader', params, this.httpOptions)).pipe(
+          map((res) => {
+            let response = JSON.parse(JSON.stringify(res));
+            if (response.usuario) {
+              let usuario = response.usuario;
+              let user = new Usuario(
+                  usuario.id, 
+                  '', 
+                  usuario.name.split(' ')[1], 
+                  usuario.name.split(' ')[1], 
+                  usuario.email, 
+                  0, 
+                  1, 
+                  1
+                );
+              localStorage.setItem('user', JSON.stringify(user));
+              this.userSubject.next(user);
+              localStorage.setItem("ACCESS_TOKEN", response.accessToken);
+              const expiresAt = moment().add(response.expiresIn, 'second');
+              localStorage.setItem("EXPIRES_IN", JSON.stringify(expiresAt.valueOf()));
+              return user;
+            } 
+            return null
+
+          }
+      ));
+  }
 
     logout() {
       // remove user from local storage and set current user to null

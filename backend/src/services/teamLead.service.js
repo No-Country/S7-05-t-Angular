@@ -1,5 +1,6 @@
 const { TeamLead, Student, Team } = require("../database/models");
 const studentService = require("../services/student.service");
+const teamService = require("../services/team.service");
 const { models } = require("../database/db");
 
 // Obtener todos los team Lead
@@ -10,8 +11,20 @@ async function getAllTeamLeads(teamLeadId) {
       {
         model: models.Student,
         as: "Student",
-        attributes: ["id", "name", "email", "phone", "isTeamLead", "isActive"],
+        attributes: ["id", "name", "email", "phone", "isActive"],
       },
+      {
+        model: models.Team,
+        as: "teams",
+        attributes: ["id", "name", "isActive"],
+        include: [
+          {
+            model: models.Selected,
+            as: "selected",
+            attributes: ["id", "name", "isActive"]
+          },
+        ]  
+      }
     ],
   });
   return teamLeads;
@@ -29,6 +42,18 @@ async function getTeamLead(teamLeadId) {
         as: "Student",
         attributes: ["id", "name", "email", "phone", "isTeamLead", "isActive"],
       },
+      {
+        model: models.Team,
+        as: "teams",
+        attributes: ["id", "name", "isActive"],
+        include: [
+          {
+            model: models.Selected,
+            as: "selected",
+            attributes: ["id", "name", "isActive"]
+          },
+        ]  
+      }
     ],
   });
 
@@ -67,27 +92,51 @@ async function createTeamLead(studentId) {
   );
 
   teamLeadExits.isTeamLead = true;
-  const { adminId, updatedAt, createdAt, ...teamLeadData } = newTeamLead.dataValues;
+  const { adminId, updatedAt, createdAt, ...teamLeadData } =
+    newTeamLead.dataValues;
   return teamLeadData;
+}
+
+// Asignar un team lead a un equipo
+async function addTeamLeadtoTeam(teamLeadId, teamId) {
+  const teamLead = await getTeamLead(teamLeadId);
+  const team = await teamService.getTeam(teamId);
+
+  //Verificar si el equipo ya tiene asignado un TL
+  if(team.dataValues.team_leadId) {
+    throw new Error("El equipo ya tiene un tl asignado");
+  }
+
+  //Asignar team lead
+  const teamLeadToTeam = team.team_leadId = teamLeadId;
+  await team.save();
+  return teamLeadToTeam;
 }
 
 async function getTeams(teamLeadId) {
   // Verificar que el team lead existe en la base de datos
-  const teams = await models.Team.findAll({
-    where: {team_leadId: teamLeadId},
-    include: [{model: models.Student, as: 'students'}]
+  const teams = await models.TeamLead.findAll({
+    where: {studentId: teamLeadId},
+    attributes: ["id"],
+    include: [
+      {
+        model: models.Team,
+        as: "teams",
+        attributes: ["name"], // atributos de la entidad Technology
+      },
+    ]
   });
-
   //No se ha encontrado el team lead
   if (!teams) {
     throw new Error("El team lead no tiene grupos asociados");
   }
   return teams;
 }
-  
+
 module.exports = {
   getAllTeamLeads,
   createTeamLead,
   getTeamLead,
+  addTeamLeadtoTeam,
   getTeams,
 };

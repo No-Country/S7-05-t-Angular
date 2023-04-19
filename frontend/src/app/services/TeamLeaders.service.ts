@@ -3,10 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment';
 import * as moment from "moment";
-import { BehaviorSubject, catchError, from, map, Observable, Subject, tap } from 'rxjs';
-import { Grupo } from '../models/Grupo'
+import { TeamLeader } from '../models/TeamLeader'
 @Injectable()
-export class GruposService {
+export class TeamLeadersService {
 
     public url;
 
@@ -23,20 +22,20 @@ export class GruposService {
         this.url = environment.url;
     }
 
-    getAll(id: string) {
-        return this._http.get<Grupo[]>(`${this.url}users/teamLead/teams/${id}`);
+    getAll() {
+        return this._http.get<TeamLeader[]>(`${this.url}admin/teamLeaders`);
     }
 
     getById(id: string) {
-        return this._http.get<Grupo>(`${this.url}users/teamLead/${id}`);
+        return this._http.get<TeamLeader>(`${this.url}admin/teamLeader/${id}`);
     }
 
     update(id: string, params: any) {
-        return this._http.put(`${this.url}users/teamLead/${id}`, params);
+        return this._http.put(`${this.url}/admin/teamLeader${id}`, params);
     }
 
     delete(id: string) {
-        return this._http.delete(`${this.url}users/teamLead/${id}`);
+        return this._http.delete(`${this.url}/admin/teamLeader/${id}`);
     }
 
 }

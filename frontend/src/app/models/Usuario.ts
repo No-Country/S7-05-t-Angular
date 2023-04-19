@@ -1,7 +1,7 @@
 import { Grupo } from "./Grupo";
 
 export class Usuario {
-    id?: number;
+    id?: string;
     email?: string;
     password?: string;
     apellido?: string;
@@ -16,7 +16,7 @@ export class Usuario {
     grupos?: Array<Grupo>;
     
     constructor(
-        id = 0,
+        id = '',
         password = '',
         apellido = '',
         nombre = '',
