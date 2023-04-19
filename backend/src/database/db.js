@@ -1,13 +1,18 @@
 const { Sequelize } = require("sequelize");
 const { config } = require("../config/config");
-const setupModels = require('./models');
+const setupModels = require("./models");
 
-require('dotenv').config()
-const sequelize = new Sequelize(config.dbName, config.dbUser, config.dbPassword, {
+require("dotenv").config();
+const sequelize = new Sequelize(
+  config.dbName,
+  config.dbUser,
+  config.dbPassword,
+  {
     host: config.dbHost,
-    dialect: 'postgres',
+    dialect: "postgres",
     port: config.dbPort,
-});
+  }
+);
 
 // Realizar sincronización de modelos
 // sequelize.sync({ force: false }) // Si force es true, se borrarán las tablas existentes y se crearán de nuevo
@@ -19,5 +24,4 @@ const sequelize = new Sequelize(config.dbName, config.dbUser, config.dbPassword,
 //     });
 
 setupModels(sequelize);
-
 module.exports = sequelize;
