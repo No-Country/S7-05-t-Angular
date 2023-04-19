@@ -96,6 +96,7 @@ async function getTechnologyTeam() {
   return teamsTech;
 }
 
+
 module.exports = {
   getTeam,
   getAllTeam,

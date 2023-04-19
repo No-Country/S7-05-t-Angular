@@ -5,6 +5,7 @@ const {
   getOneWeek,
   createAttendance,
   getMeetingWithId,
+  createStudentActivity,
 } = require("../controllers/meeting.controller");
 const router = express.Router();
 
@@ -16,6 +17,7 @@ router.get("/search/:id", getMeetingWithId);
 
 router.post("/create", createMeeting);
 router.post("/createAttendance", createAttendance);
+router.post("/createActivity", createStudentActivity);
 //router.get("/all", getAllTeam);
 //router.get("/:id", getTeam);
 

@@ -74,10 +74,30 @@ const getMeetingWithId = async (req, res, next) => {
   }
 };
 
+// Crear una actividad por estudiante
+const createStudentActivity = async (req, res, next) => {
+  try {
+    const { studentId, attendanceId, description } = req.body;
+
+    const studentActivity = await meetingService.createStudentActivity({
+      studentId,
+      attendanceId,
+      description,
+    });
+
+    res
+      .status(201)
+      .json({ success: "Actividad creada correctamente", studentActivity });
+  } catch (error) {       
+    next(error);
+  }
+};
+
 module.exports = {
   createMeeting,
   getAllWeeks,
   getOneWeek,
   createAttendance,
   getMeetingWithId,
+  createStudentActivity
 };

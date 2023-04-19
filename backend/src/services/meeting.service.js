@@ -1,3 +1,4 @@
+const { Sequelize } = require("sequelize");
 const { models } = require("../database/db");
 const teamService = require("../services/team.service");
 
@@ -131,10 +132,43 @@ const createAttendance = async ({ is_present, studentId, meetingId }) => {
   return attendance;
 };
 
+
+// Crear una actividad por estudiante
+async function createStudentActivity({ studentId, attendanceId, description }) {
+  
+  //Verificar que el id de la asistencia exista y que corresponda al estudiante
+  const checkAttendanceStudent = await models.Attendance.findOne({
+    where: Sequelize.literal(`id = '${attendanceId}' AND "studentId" = '${studentId}'`),
+  });
+  
+  
+
+  if (!checkAttendanceStudent) {
+    throw new Error("Asistencia y/o estudiante no coinciden");
+  }
+
+  // Verificar que la descripción no esté vacía
+  if (!description) {
+    throw new Error("La descripción no puede estar vacía");
+  }
+
+  if (description && description.length > 500) {
+    throw new Error("La observación excede el límite de 500 caracteres");
+  }
+  const studentActivity = await models.StudentActivity.create({
+    studentId,
+    attendanceId,
+    description,
+  });
+
+  return studentActivity;
+}
+
 module.exports = {
   getAllWeeks,
   createMeeting,
   getOneWeek,
   createAttendance,
   getMeetingWithId,
+  createStudentActivity,
 };

@@ -13,7 +13,6 @@ const {
   TeamTechnologySchema,
 } = require("./team-technologies.model");
 const { TeamStudent, TeamStudentSchema } = require("./team-student.model");
-const { Activity, ActivitySchema } = require("./activity.model");
 const { Week, WeekSchema } = require("./week.model");
 const { Meeting, MeetingSchema } = require("./meeting.model");
 const { Attendance, AttendanceSchema } = require("./attendance.model");
@@ -35,7 +34,6 @@ function setupModels(sequelize) {
   );
   TeamTechnology.init(TeamTechnologySchema, TeamTechnology.config(sequelize));
   TeamStudent.init(TeamStudentSchema, TeamStudent.config(sequelize));
-  Activity.init(ActivitySchema, Activity.config(sequelize));
   Week.init(WeekSchema, Week.config(sequelize));
   Meeting.init(MeetingSchema, Meeting.config(sequelize));
   Attendance.init(AttendanceSchema, Attendance.config(sequelize));
@@ -53,7 +51,6 @@ function setupModels(sequelize) {
   StudentTechnology.associate(sequelize.models);
   TeamTechnology.associate(sequelize.models);
   TeamStudent.associate(sequelize.models);
-  Activity.associate(sequelize.models);
   Week.associate(sequelize.models);
   Meeting.associate(sequelize.models);
   Attendance.associate(sequelize.models);
