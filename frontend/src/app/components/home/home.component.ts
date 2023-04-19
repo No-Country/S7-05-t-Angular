@@ -82,13 +82,13 @@ export class HomeComponent {
 
   obtenerGrupos() {
     this.grupos = new Array<Grupo>();
-        this.loading = true;    
-        this._gruposService.getAll(this.user.id ? this.user.id : '1234') 
-          .pipe(first())
-          .subscribe((response: any) => {
-            this.grupos = response.data;
-        });
-        this.loading = false;
+    this.loading = true;    
+    this._gruposService.getAll(this.user.id ? this.user.id : '1234') 
+      .pipe(first())
+      .subscribe((response: any) => {
+        this.grupos = response.data[0].teams;
+    });
+    this.loading = false;
   }
 
   obtenerTeamLeaders() {
