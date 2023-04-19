@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { createTeamLead, getTeamLead, getAllTeamLeads, getTeams, addTeamLeadtoTeam } = require("../controllers/teamLead.controller");
-const router = express.Router();
 
 router.use(express.json());
 

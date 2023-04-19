@@ -44,14 +44,14 @@
                         <mat-card class="teamleaders-card">
                             <mat-card-content class="teamleaders-card-content">
                                 <img class="teamleaders-card-img" src="/assets/img//perfil2.png" alt="team-leader-profile">
-                                <span class="teamleaders-card-title"> {{tl.nombre}} {{tl.apellido}} </span>
-                                <span class="teamleaders-card-subtitle"> {{tl.rol}} </span>
+                                <span class="teamleaders-card-title"> {{tl.student.name}} </span>
+                                <span class="teamleaders-card-subtitle"> Desarrollador web </span>
+                                <!-- <span class="teamleaders-card-subtitle"> {{tl.rol}} </span> -->
                                 <span class="teamleaders-card-groups"> Grupos: </span>
-                                <span class="teamleaders-card-groups" *ngFor="let grupo of tl.grupos"> 
-                                    {{grupo.seleccionado ? "S"+grupo.seleccionado : "C"+grupo.cohorte }} - {{grupo.numero != null ? grupo.numero < 10 ? "0"+grupo.numero : ""+grupo.numero : "" }} - {{grupo.turno}} - {{grupo.stack}} 
+                                <span class="teamleaders-card-groups" *ngFor="let grupo of tl.teams">
+                                    {{grupo.name}} 
+                                    <!-- {{grupo.seleccionado ? "S"+grupo.seleccionado : "C"+grupo.cohorte }} - {{grupo.numero != null ? grupo.numero < 10 ? "0"+grupo.numero : ""+grupo.numero : "" }} - {{grupo.turno}} - {{grupo.stack}}  -->
                                 </span>
-                                <!-- <span class="teamleaders-card-groups"> S7-01-t-native </span>
-                                <span class="teamleaders-card-groups"> S7-10-m-angular </span> -->
                             </mat-card-content>
                             <button class="teamleaders-card-btn" mat-icon-button (click)="onClick()">
                                 <mat-icon> chevron_right </mat-icon>
