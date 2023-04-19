@@ -115,11 +115,17 @@ async function addTeamLeadtoTeam(teamLeadId, teamId) {
 
 async function getTeams(teamLeadId) {
   // Verificar que el team lead existe en la base de datos
-  const teams = await models.Team.findAll({
-    where: {team_leadId: teamLeadId},
-    include: [{model: models.Student, as: 'students'}]
+  const teams = await models.TeamLead.findAll({
+    where: {studentId: teamLeadId},
+    attributes: ["id"],
+    include: [
+      {
+        model: models.Team,
+        as: "teams",
+        attributes: ["name"], // atributos de la entidad Technology
+      },
+    ]
   });
-
   //No se ha encontrado el team lead
   if (!teams) {
     throw new Error("El team lead no tiene grupos asociados");

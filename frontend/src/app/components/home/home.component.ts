@@ -13,7 +13,7 @@ import { TeamLeader } from 'src/app/models/TeamLeader';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  user: Usuario | null = new Usuario();
+  user: Usuario = new Usuario();
   loading: boolean = false;
   grupos: Array<Grupo> = new Array<Grupo>();
   teamLeaders: Array<TeamLeader> = new Array<TeamLeader>();
@@ -29,12 +29,12 @@ export class HomeComponent {
   
   ngOnInit() {
     // this.obtenerGrupos();
-    this.grupos = [
-      {id: 1, turno: 'T', seleccionado: 7, numero: 8, stack: 'Angular'}, 
-      {id: 2, turno: 'M', cohorte: 9, numero: 10, stack: 'React Java'}, 
-      {id: 3, turno: 'T', seleccionado: 7, numero: 11, stack: 'Python'}, 
-      {id: 4, turno: 'M', cohorte: 9, numero: 15, stack: 'Angular'}, 
-    ]
+    // this.grupos = [
+    //   {id: 1, turno: 'T', seleccionado: 7, numero: 8, stack: 'Angular'}, 
+    //   {id: 2, turno: 'M', cohorte: 9, numero: 10, stack: 'React Java'}, 
+    //   {id: 3, turno: 'T', seleccionado: 7, numero: 11, stack: 'Python'}, 
+    //   {id: 4, turno: 'M', cohorte: 9, numero: 15, stack: 'Angular'}, 
+    // ]
 
     // this.teamLeaders = [
     //   { id: 1,  apellido: 'Micaela', nombre: 'Andres', isAdmin: 0, isTeamLeader: 1, habilitado: 1, grupoId: 1, rol: 'Diseñadora Web', stack: 'Angular', 
@@ -63,7 +63,7 @@ export class HomeComponent {
     if (this.user.isAdmin == 1) {
       this.obtenerTeamLeaders();
     } else {
-
+      this.obtenerGrupos();
     } 
   }
 
@@ -83,11 +83,10 @@ export class HomeComponent {
   obtenerGrupos() {
     this.grupos = new Array<Grupo>();
         this.loading = true;    
-        this._gruposService.getAll() 
+        this._gruposService.getAll(this.user.id ? this.user.id : '1234') 
           .pipe(first())
           .subscribe((response: any) => {
-            this.grupos = response.data
-          
+            this.grupos = response.data;
         });
         this.loading = false;
   }

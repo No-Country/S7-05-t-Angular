@@ -7,7 +7,7 @@ export class Grupo {
     teamLeaderId?: number;
     numero?: number;
     name?: string;
-    
+    teams?: any;
     constructor(
         id = 0,
         turno = '',

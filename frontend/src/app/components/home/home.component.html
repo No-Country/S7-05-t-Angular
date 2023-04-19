@@ -30,7 +30,8 @@
                 <mat-card class="team-card" *ngFor="let grupo of grupos">
                     <mat-card-content class="team-card-content">
                         <p class="group"> Grupo </p>
-                        <p class="group-name"> {{grupo.seleccionado ? "S"+grupo.seleccionado : "C"+grupo.cohorte }} - {{grupo.numero != null ? grupo.numero < 10 ? "0"+grupo.numero : ""+grupo.numero : "" }} - {{grupo.turno}} - {{grupo.stack}} </p>
+                        <p class="group-name"> {{grupo.teams[0].name}} </p>
+                        <!-- <p class="group-name"> {{grupo.seleccionado ? "S"+grupo.seleccionado : "C"+grupo.cohorte }} - {{grupo.numero != null ? grupo.numero < 10 ? "0"+grupo.numero : ""+grupo.numero : "" }} - {{grupo.turno}} - {{grupo.stack}} </p> -->
                         <button mat-icon-button (click)="onClick()">
                             <mat-icon> chevron_right </mat-icon>
                         </button>
