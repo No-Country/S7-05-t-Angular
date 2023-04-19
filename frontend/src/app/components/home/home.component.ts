@@ -21,7 +21,7 @@ export class HomeComponent {
     private _authenticationService: AuthenticationService,
     private _gruposService: GruposService,
   ) {
-    // this.user = this._authenticationService.userValue;
+    // this.user = this.parseLocalStorage(localStorage.getItem('user') || "") ;  
   }
   
   ngOnInit() {

@@ -14,9 +14,7 @@ const loginTL = async (req, res, next) => {
     try {
         let datos = req.body;
         if (datos) {
-            console.log('controlador usuario: ', datos);
-            let control = await models.TeamLead.findOne({ email: datos.email, isActive: true });
-            console.log('control', control);
+            let control = await models.Student.findOne({ where: {email: datos.email, isTeamLead: true, isActive: true }});
             if (control) {
                 if (datos.password == control.dataValues.password) {
                     const expiresIn = 6 * 60 * 60;
@@ -40,9 +38,7 @@ const loginAdmin = async (req, res, next) => {
     try {
         let datos = req.body;
         if (datos) {
-            console.log('controlador usuario: ', datos);
             let control = await models.Admin.findOne({ email: datos.email, isActive: true });
-            console.log('control', control);
             if (control) {
                 if (datos.password == control.dataValues.password) {
                     const expiresIn = 6 * 60 * 60;
