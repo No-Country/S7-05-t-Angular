@@ -5,6 +5,7 @@ export class TeamLeader {
     apellido?: string;
     teams?: Array<Grupo>;
     student?: any;
+    studentId?: any;
     
     constructor(
         id = 0,
