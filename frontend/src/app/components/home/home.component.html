@@ -17,11 +17,15 @@
         <div class="col-lg-9 col-xs-12 home-container">
             <mat-card class="home-card">
                 <mat-card-header>
-                    <mat-card-title class="home-card-title">Bienvenido {{ user.nombre }} </mat-card-title>
+                    <mat-card-title class="home-card-title">Bienvenido/a {{ user.nombre }} </mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, aliquid error quisquam quidem vitae atque tenetur, quasi quibusdam incidunt accusantium perferendis dolor. Autem dolorum, distinctio accusamus reprehenderit tempora voluptatem officiis?.
+                    <p *ngIf="user.isAdmin == 1">
+                        ¡Bienvenido a nuestra página web de administrador! Aquí encontrarás todos los recursos necesarios para gestionar eficazmente a tus team leaders. Podrás monitorizar, actualizar contenido y realizar un seguimiento detenido de cada grupo. 
+                        Estamos comprometidos con ofrecerte una experiencia de administración intuitiva y fácil de usar.                    </p>
+                    <p *ngIf="user.isAdmin == 0"> 
+                        Nuestra plataforma en línea está diseñada para ayudarte a gestionar y coordinar tu equipo de trabajo de manera más efectiva. Sabemos que liderar un equipo puede ser un desafío, por lo que hemos creado esta herramienta para facilitar el trabajo de los líderes de equipo y mejorar la colaboración en los proyectos.
+                        En nuestra página web, encontrarás una interfaz fácil de usar que te permitirá ver el progreso de las tareas asignadas a los miembros de tu equipo también podrás asignarles roles y responsabilidades específicas.
                     </p>
                 </mat-card-content>
             </mat-card>
@@ -44,7 +48,7 @@
                     <div class="col-lg-4 col-sm-12" *ngFor="let tl of teamLeaders">
                         <mat-card class="teamleaders-card">
                             <mat-card-content class="teamleaders-card-content">
-                                <img class="teamleaders-card-img" src="/assets/img//perfil2.png" alt="team-leader-profile">
+                                <img class="teamleaders-card-img" src="/assets/img/perfiltl.png" alt="team-leader-profile">
                                 <span class="teamleaders-card-title"> {{tl.student.name}} </span>
                                 <span class="teamleaders-card-subtitle"> Desarrollador web </span>
                                 <!-- <span class="teamleaders-card-subtitle"> {{tl.rol}} </span> -->
