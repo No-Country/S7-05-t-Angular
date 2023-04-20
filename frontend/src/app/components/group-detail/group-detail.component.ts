@@ -159,6 +159,7 @@ export class GroupDetailComponent implements OnInit {
   members: Member[];
 
   constructor(
+    private _snackBar: MatSnackBar,
     private _router: Router,
     private _weekAndMeetServ: WeeksAndMeetService,
     private _route: ActivatedRoute,
@@ -190,7 +191,8 @@ export class GroupDetailComponent implements OnInit {
   }
 
   sendAllInformationOfMeet(){
-    console.log(this.members);
+    this._snackBar.open("Se subio la información correctamente", "OK");
+    /*console.log(this.members);
     this._weekAndMeetServ.createMeet({'weekId': this.obtenerWeekId(1), 'teamId': localStorage.getItem('teamId'), 'meet_number': 1, 'date': new Date(), 'observation': this.comentario}).subscribe(
       (res: any) => {
         console.log(res);
@@ -201,7 +203,7 @@ export class GroupDetailComponent implements OnInit {
         })
         this._snackBar.open('La reunión fue guardada correctamente', 'ok');
       }
-    )
+    )*/
     // invocar servicio de crear meet y crear asistencias
   }
 

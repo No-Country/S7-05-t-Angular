@@ -14,13 +14,22 @@
                 <input matInput type="text" placeholder="Profesión" required>
             </mat-form-field>
             <mat-form-field appearance="outline" style="width: 100%">
-                <mat-select placeholder="Grupos" (selectionChange)="onGroupSelected($event.value)">
-                    <mat-option *ngFor="let group of groups" [value]="group">
-                        {{group.name}}
-                    </mat-option>
+                <mat-select placeholder="Grupos" (selectionChange)="onGroupSelected($event.value)" multiple>
+                  <mat-option [value]="'S8-25-t-React'" selected>
+                    S8-25-t-React
+                  </mat-option>
+                  <mat-option [value]="'S8-20-t-Java-Angular'" selected>
+                    S8-20-t-Java-Angular
+                  </mat-option>
+                  <mat-option [value]="'S8-7-t-No Code'">
+                    S8-7-t-No Code
+                  </mat-option>
+                  <mat-option [value]="'S8-3-t-.NET'">
+                    S8-3-t-.NET
+                  </mat-option>
                 </mat-select>
-            </mat-form-field>
-            <button  mat-fab extended class="btn-submit" [disabled]="!loginForm.form.valid">Añadir Team Lider</button>
+              </mat-form-field>              
+            <button  mat-fab extended class="btn-submit" [disabled]="!loginForm.form.valid" (click)="addTL()">Añadir Team Lider</button>
         </form>
     </div>
 </div>
