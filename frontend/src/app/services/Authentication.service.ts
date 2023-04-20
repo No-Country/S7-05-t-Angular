@@ -54,7 +54,7 @@ export class AuthenticationService {
             1
           );
           localStorage.setItem('user', JSON.stringify(user));
-          this.userSubject.next(user);
+          // this.userSubject.next(user);
           localStorage.setItem("ACCESS_TOKEN", response.accessToken);
           const expiresAt = moment().add(response.expiresIn, 'second');
           localStorage.setItem("EXPIRES_IN", JSON.stringify(expiresAt.valueOf()));
