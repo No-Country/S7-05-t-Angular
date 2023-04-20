@@ -145,8 +145,8 @@ body{
     input[type="checkbox"]:checked::before {
       content: "";
       display: block;
-      width: 0.6rem;
-      height: 0.6rem;
+      width: 0.9rem;
+      height: 0.9rem;
       border-radius: 50%;
       background-color: map-get(variables.$colors, "light");
       border: 2px solid white;
