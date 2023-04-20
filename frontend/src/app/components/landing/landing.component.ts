@@ -12,11 +12,11 @@ export class LandingComponent {
 
   constructor(private dialog: MatDialog) {}
 
-  openModal() {
+  openModal(value: string) {
     const dialogRef = this.dialog.open(LoginComponent,{
       maxWidth:'750px',
       maxHeight:'700px',
-
+      data: { value: value }
     });
 
     dialogRef.afterClosed().subscribe(result => {

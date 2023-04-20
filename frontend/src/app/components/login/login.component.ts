@@ -1,52 +1,56 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/Authentication.service';
-import { filter, Subject, take, takeUntil } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import { environment } from 'src/environment';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [AuthenticationService ]
+  providers: [AuthenticationService]
 })
 
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
   public loginValid = true;
   public username = '';
   public password = '';
 
-  // private readonly returnUrl: string;
+  value: string = '';
+  private urlApi = environment.url;
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private _router: Router,
     private _authenticationService: AuthenticationService,
     private dialog: MatDialog,
-  ) {
-    // this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/game';
-  }
+  ) { }
 
   public ngOnInit(): void {
-    // this._authenticationService.isAuthenticated$.pipe(
-    //   filter((isAuthenticated: boolean) => isAuthenticated),
-    //   takeUntil(this._destroySub$)
-    // ).subscribe( _ => this._router.navigateByUrl(this.returnUrl));
+    this.value = this.data.value;
+    this.urlApi = `${this.urlApi}/${this.value}`
   }
 
 
   public onSubmit(): void {
-    this.loginValid = true;
-    this._authenticationService.login(this.username, this.password);
-    this._router.navigateByUrl('/home');
-    this.dialog.closeAll();
-    // this._authService.login(this.username, this.password).pipe(
-    //   take(1)
-    // ).subscribe({
-    //   next: _ => {
-    //     this.loginValid = true;
-    //   },
-    //   error: _ => this.loginValid = false
-    // });
+    this._authenticationService.login(this.urlApi, this.username, this.password).subscribe(
+      (res) => {
+        console.log(res)
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
   }
 
+  //this._router.navigateByUrl('/home');
+  //this.dialog.closeAll();
+  // this._authService.login(this.username, this.password).pipe(
+  //   take(1)
+  // ).subscribe({
+  //   next: _ => {
+  //     this.loginValid = true;
+  //   },
+  //   error: _ => this.loginValid = false
+  // });
 }
