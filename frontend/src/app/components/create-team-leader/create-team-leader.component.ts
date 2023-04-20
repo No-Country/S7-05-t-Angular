@@ -36,8 +36,7 @@ export class CreateTeamLeaderComponent {
   getAllGroups(){
     this._gruposService.getAllGroups().subscribe(
       (res: any) => {
-      console.log(res.data)
-      //this.groups = res.data.filter((group: { isTeamLead: boolean; }) => group.isTeamLead == false);
+        this.groups = res.teams.filter((group: { isTeamLead: boolean; }) => group.isTeamLead == false);
     })
   }
 

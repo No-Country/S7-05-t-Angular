@@ -74,10 +74,22 @@ const getMeetingWithId = async (req, res, next) => {
   }
 };
 
+const obtenerMeetingSemana = async (req, res, next) => {
+  try {
+    const { teamId, weekId, meet_number } = req.body;
+
+    const meeting = await meetingService.obtenerMeetingSemana(teamId, weekId, meet_number);
+
+    res.status(200).json({ success: true, meeting });
+  } catch (error) {
+    next(error);
+  }
+}
 module.exports = {
   createMeeting,
   getAllWeeks,
   getOneWeek,
   createAttendance,
   getMeetingWithId,
+  obtenerMeetingSemana,
 };

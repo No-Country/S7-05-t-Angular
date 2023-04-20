@@ -56,7 +56,7 @@ async function getTeam(teamId) {
         include: [
           {
             model: models.Student,
-            as: "Student",
+            as: "student",
             attributes: ["id", "name", "email"],
           },
         ],

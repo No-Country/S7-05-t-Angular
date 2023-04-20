@@ -98,14 +98,14 @@ const createAttendance = async ({ is_present, studentId, meetingId }) => {
   // Verificar que el estudiante exista en el equipo
   const teamId = meeting.dataValues.teamId;
   const teamStudents = await teamService.getTeam(teamId);
-  console.log(teamStudents)
+  // console.log(teamStudents)
   const students = teamStudents.students.map((student) => student.id);
-  console.log(students)
+  // console.log(students)
   const studentExists = students.includes(studentId);
 
-  if (!studentExists) {
-    throw new Error("El estudiante no pertenece al equipo");
-  }
+  // if (!studentExists) {
+  //   throw new Error("El estudiante no pertenece al equipo");
+  // }
 
   // Verificar que haya asistido
   if (is_present !== true && is_present !== false) {
@@ -133,10 +133,22 @@ const createAttendance = async ({ is_present, studentId, meetingId }) => {
   return attendance;
 };
 
+
+async function obtenerMeetingSemana(teamId, weekId, meet_number) {
+  const meeting = await models.Meeting.findOne(
+      {where: { teamId: teamId, weekId: weekId, meet_number: meet_number }} 
+    );
+    
+  return meeting;
+}
+
+
+
 module.exports = {
   getAllWeeks,
   createMeeting,
   getOneWeek,
   createAttendance,
   getMeetingWithId,
+  obtenerMeetingSemana,
 };
