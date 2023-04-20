@@ -84,7 +84,7 @@ export class AuthenticationService {
             1
           );
           localStorage.setItem('user', JSON.stringify(user));
-          this.userSubject.next(user);
+          // this.userSubject.next(user);
           localStorage.setItem("ACCESS_TOKEN", response.accessToken);
           const expiresAt = moment().add(response.expiresIn, 'second');
           localStorage.setItem("EXPIRES_IN", JSON.stringify(expiresAt.valueOf()));
@@ -99,7 +99,7 @@ export class AuthenticationService {
   logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');
-    this.userSubject.next(null);
+    // this.userSubject.next(null);
     this._router.navigate(['/login']);
   }
 
