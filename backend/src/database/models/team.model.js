@@ -76,11 +76,13 @@ class Team extends Model {
     //   foreignKey: "teamId",
     //   as: "students",
     // });
-    this.belongsToMany(models.Technology, {
-      through: models.TeamTechnology,
-      foreignKey: "teamId",
-      //otherKey: 'technologyId',
-    });
+
+
+    // this.belongsToMany(models.Technology, {
+    //   through: models.TeamTechnology,
+    //   foreignKey: "teamId",
+    //   //otherKey: 'technologyId',
+    // });
 
     this.belongsToMany(models.Student, {
       through: models.TeamStudent,

@@ -132,21 +132,32 @@ const createAttendance = async ({ is_present, studentId, meetingId }) => {
   return attendance;
 };
 
-
 // Crear una actividad por estudiante
 async function createStudentActivity({ studentId, attendanceId, description }) {
-  
   //Verificar que el id de la asistencia exista y que corresponda al estudiante
   const checkAttendanceStudent = await models.Attendance.findOne({
-    where: Sequelize.literal(`id = '${attendanceId}' AND "studentId" = '${studentId}'`),
+    where: Sequelize.literal(
+      `id = '${attendanceId}' AND "studentId" = '${studentId}'`
+    ),
   });
-  
-  
 
   if (!checkAttendanceStudent) {
     throw new Error("Asistencia y/o estudiante no coinciden");
   }
 
+  // Agregar validación para comprobar si el estudiante ya tiene una actividad para esta asistencia
+  const existingActivity = await models.StudentActivity.findOne({
+    where: {
+      attendanceId,
+      studentId,
+    },
+  });
+
+  if (existingActivity) {
+    throw new Error(
+      "El estudiante ya tiene una actividad para esta asistencia"
+    );
+  }
   // Verificar que la descripción no esté vacía
   if (!description) {
     throw new Error("La descripción no puede estar vacía");

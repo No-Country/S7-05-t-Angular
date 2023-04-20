@@ -9,6 +9,7 @@ const TechnologySchema = {
     primaryKey: true,
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
+    field: "id"
   },
   name: {
     allowNull: false,
@@ -35,10 +36,10 @@ class Technology extends Model {
       through: "Student_Technologies",
       foreignKey: "technologyId",
     });
-    this.belongsToMany(models.Team, {
+    /*this.belongsToMany(models.Team, {
       through: "Team_Technologies",
       foreignKey: "teamId",
-    });
+    });*/
   }
   static config(sequelize) {
     return {

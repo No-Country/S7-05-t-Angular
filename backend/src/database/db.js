@@ -11,6 +11,7 @@ const sequelize = new Sequelize(
     host: config.dbHost,
     dialect: "postgres",
     port: config.dbPort,
+    underscored: true 
   }
 );
 

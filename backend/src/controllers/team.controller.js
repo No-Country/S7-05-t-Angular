@@ -21,6 +21,24 @@ const getTeam = async (req, res, next) => {
   }
 };
 
+// Asignar una tecnologia a un team
+const addTechnologyToTeam = async(req, res, next) => {
+  try {
+    const teamId = req.body.teamId;
+    const technologyId = req.body.technologyId;
+
+    const teamTechnologies = await teamService.addTechnologyToTeam(teamId, technologyId);
+    res.status(201).json({ success: "Tecnologia agregada correctamente", teamTechnologies });
+
+  } catch (error) {
+    console.log('====================================');
+    console.log(error.message);
+    console.log('====================================');
+    next(error);
+  }
+}
+
+
 // Obtener teams y sus technologias
 const getTechnologyToTeam = async (req, res, next) => {
   try {
@@ -35,4 +53,5 @@ module.exports = {
   getTeam,
   getAllTeam,
   getTechnologyToTeam,
+  addTechnologyToTeam,
 };
