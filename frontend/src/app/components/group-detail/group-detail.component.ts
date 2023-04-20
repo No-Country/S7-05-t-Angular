@@ -1,6 +1,7 @@
 import { state } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { WeeksAndMeetService } from 'src/app/services/weeks-and-meet.service';
 
 export interface Member {
   fullName: string;
@@ -95,12 +96,26 @@ export class GroupDetailComponent implements OnInit {
 
   constructor(
     private _router: Router,
+    private _weekAndMeetServ: WeeksAndMeetService,
     private _route: ActivatedRoute) {
     this.members = MEMBERS_DATA;
   }
 
   ngOnInit(): void {
     this.groupName = localStorage.getItem('groupName');
+    this.getAllWeeks();
+  }
+
+  getAllWeeks(){
+    this._weekAndMeetServ.getAllWeeks().subscribe(
+      (res) => {
+        console.log(res)
+      }
+    )
+  }
+
+  sendAllInformationOfMeet(){
+    // invocar servicio de crear meet y crear asistencias
   }
    
 }

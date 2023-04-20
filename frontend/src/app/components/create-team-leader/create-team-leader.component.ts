@@ -22,7 +22,7 @@ export class CreateTeamLeaderComponent {
 
   ngOnInit() {
     this.getAllStudents();
-    //this.getAllGroups();
+    this.getAllGroups();
   }
 
   getAllStudents(){
@@ -33,9 +33,13 @@ export class CreateTeamLeaderComponent {
     })
   }
 
-  /*getAllGroups(){
-    this._gruposService.getAll()
-  }*/
+  getAllGroups(){
+    this._gruposService.getAllGroups().subscribe(
+      (res: any) => {
+      console.log(res.data)
+      //this.groups = res.data.filter((group: { isTeamLead: boolean; }) => group.isTeamLead == false);
+    })
+  }
 
   onStudentSelected(student: any) {
 

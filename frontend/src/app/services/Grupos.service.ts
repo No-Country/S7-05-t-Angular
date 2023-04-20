@@ -22,7 +22,7 @@ export class GruposService {
     }
 
     getAllGroups(){
-        return this._http.get<Grupo[]>(`${this.url}users/team/all`);
+        return this._http.get<Grupo[]>(`${this.url}team/all`);
     }
 
     getAll(id: string) {
