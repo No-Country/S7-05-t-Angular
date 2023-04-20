@@ -159,7 +159,6 @@ export class GroupDetailComponent implements OnInit {
   members: Member[];
 
   constructor(
-    private _snackBar: MatSnackBar,
     private _router: Router,
     private _weekAndMeetServ: WeeksAndMeetService,
     private _route: ActivatedRoute,

@@ -48,7 +48,7 @@ export class CreateTeamLeaderComponent {
   }
 
   addTL() {
-   
+    this.dialogRef.close();
   }
 
   close() {

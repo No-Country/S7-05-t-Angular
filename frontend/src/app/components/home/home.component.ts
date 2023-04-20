@@ -20,6 +20,7 @@ export class HomeComponent {
   user: Usuario = new Usuario();
   loading: boolean = false;
   grupos: Array<Grupo> = new Array<Grupo>();
+  teamLeadersOriginales: Array<TeamLeader> = new Array<TeamLeader>();
   teamLeaders: Array<TeamLeader> = new Array<TeamLeader>();
   grupo: any;
   showDropdown = false;
@@ -60,7 +61,6 @@ export class HomeComponent {
       .pipe(first())
       .subscribe((response: any) => {
         this.grupos = response.data[0].teams;
-        console.log(this.grupos)
       });
     this.loading = false;
   }
@@ -74,6 +74,8 @@ export class HomeComponent {
         if (response.success) {
           this.teamLeaders = response.teamLeaders as TeamLeader[];
           console.log(this.teamLeaders[1])
+          this.teamLeadersOriginales = [... this.teamLeaders];
+          this.teamLeaders = this.teamLeaders.filter((elem:any) => elem.id != '6bf66f5d-88bb-47bb-b78f-0f666005eb7d');
         } else {
           console.log('error')
         }
@@ -90,6 +92,7 @@ export class HomeComponent {
     dialogRef.afterClosed().subscribe(result => {
       this._dialog.closeAll();
       console.log(`Dialog result: ${result}`);
+      this.teamLeaders = this.teamLeadersOriginales;
     });
   }
 
