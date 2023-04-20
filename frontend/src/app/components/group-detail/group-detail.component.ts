@@ -55,17 +55,66 @@ const MEMBERS_DATA: Member[] = [
   },
 ];
 
+
+// const MEMBERS_DATA_SEMANA1: Member[] = [
+//   {
+//     id: '7bb97952-a5fb-4a68-9da8-9017b078b42f',
+//     fullName: 'Olivia White',
+//     rol: 'Frontend',
+//     meeting1attendance: false,
+//     meeting1absence: false,
+//     activity: ''
+//   },
+//   {
+//     id: '5542b8ee-01bb-4f9d-b86e-f3cb419b10e0',
+//     fullName: 'James Martinez',
+//     rol: 'Backend',
+//     meeting1attendance: false,
+//     meeting1absence: false,
+//     activity: ''
+//   },
+//   {
+//     id: '9ac8bc47-9468-4265-96e2-ca1e40223fab',
+//     fullName: 'Gabriela Torres',
+//     rol: 'Tester',
+//     meeting1attendance: true,
+//     meeting1absence: false,
+//     activity: ''
+//   },
+//   {
+//     id: '3e77afa4-288b-4c26-b5ee-07da2ff71316',
+//     fullName: 'Luis Pérez',
+//     rol: 'Backend',
+//     meeting1attendance: true,
+//     meeting1absence: false,
+//     activity: ''
+//   },
+//   {
+//     id: 'ed3b01ac-0f70-4a06-9f3b-5ce1c31984c3',
+//     fullName: 'Juan González',
+//     rol: 'Backend',
+//     meeting1attendance: true,
+//     meeting1absence: false,
+//     activity: ''
+//   }
+
+
+// ];
+
 @Component({
   selector: 'app-group-detail',
   templateUrl: './group-detail.component.html',
   styleUrls: ['./group-detail.component.scss']
 })
 export class GroupDetailComponent implements OnInit {
+
+  
   isMeetButtonClicked1 = false;
   isMeetButtonClicked = false;
   meetElement: any;
   groupName: any;
   comentario: string = '';
+  // comentario_semana1: string = 'Se trabajo en el login y registro';
   weeks: any;
   selectedWeek: string = 'c5d5d5c5-5298-4c25-8825-5c1d0fae55ac';
 
@@ -113,19 +162,30 @@ export class GroupDetailComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private _router: Router,
     private _weekAndMeetServ: WeeksAndMeetService,
-    private _route: ActivatedRoute) {
+    private _route: ActivatedRoute,
+    private _snackBar: MatSnackBar,
+    ) {
     this.members = MEMBERS_DATA;
   }
 
   ngOnInit(): void {
     this.groupName = localStorage.getItem('groupName');
     this.getAllWeeks();
+
+
   }
 
   getAllWeeks(){
     this._weekAndMeetServ.getAllWeeks().subscribe(
       (res: any) => {
         this.weeks = res.getWeeks;
+
+        // this._weekAndMeetServ.getMeetingSemanal({'weekId': this.obtenerWeekId(1), 'teamId': localStorage.getItem('teamId'), 'meet_number': 1}).subscribe(
+        //   (res: any) => {
+        //     console.log(res);
+        //   }
+        // )
+        
       }
     )
   }
@@ -141,6 +201,7 @@ export class GroupDetailComponent implements OnInit {
             console.log(res);
           });
         })
+        this._snackBar.open('La reunión fue guardada correctamente', 'ok');
       }
     )*/
     // invocar servicio de crear meet y crear asistencias
@@ -154,9 +215,20 @@ export class GroupDetailComponent implements OnInit {
     return 'id';
   }
 
-  onWeekClick(id: string) {
-    this.selectedWeek = id;
-    console.log(id)
-  }
+  // onWeekClick(id: string) {
+  //   this.selectedWeek = id;
+  //   console.log(id)
+  // }
    
+  onWeekClick(weekId: string) {
+    console.log(`Se hizo clic en la semana con el ID: ${weekId}`);
+
+    // if (this.currentWeek == 1) {
+    //   this.members = MEMBERS_DATA_SEMANA1;
+    //   this.comentario = this.comentario_semana1;
+    // }
+
+
+  }
+
 }

@@ -25,6 +25,11 @@ export class WeeksAndMeetService {
     );
   }
 
+
+  getMeetingSemanal(data: any) {
+    return from(this._http.post(`${this.url}meeting/semana`, data));
+  }
+
   createMeet(data: any) {
     return this._http.post(`${this.url}meeting/create`, data);
   }

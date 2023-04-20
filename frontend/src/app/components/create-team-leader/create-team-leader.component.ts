@@ -13,7 +13,7 @@ import { StudentsService } from 'src/app/services/students.service';
 })
 export class CreateTeamLeaderComponent {
   students: Array<Student> = new Array<Student>();
-  tlName: string = '';
+  groups: any;
 
   constructor(
     public dialogRef: MatDialogRef<CreateTeamLeaderComponent>,
@@ -43,13 +43,12 @@ export class CreateTeamLeaderComponent {
   getAllGroups(){
     this._gruposService.getAllGroups().subscribe(
       (res: any) => {
-      console.log(res.data)
-      //this.groups = res.data.filter((group: { isTeamLead: boolean; }) => group.isTeamLead == false);
+        this.groups = res.teams.filter((group: { isTeamLead: boolean; }) => group.isTeamLead == false);
     })
   }
 
   addTL() {
-    this.dialogRef.close(this.tlName);
+   
   }
 
   close() {
