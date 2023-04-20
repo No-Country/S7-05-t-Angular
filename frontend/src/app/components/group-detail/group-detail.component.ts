@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { state } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface Member {
   fullName: string;
@@ -45,10 +47,11 @@ const MEMBERS_DATA: Member[] = [
   templateUrl: './group-detail.component.html',
   styleUrls: ['./group-detail.component.scss']
 })
-export class GroupDetailComponent {
+export class GroupDetailComponent implements OnInit {
   isMeetButtonClicked1 = false;
   isMeetButtonClicked = false;
   meetElement: any;
+  groupName: any;
 
   toggleButton(){
     const meetElement = document.getElementById('meet');
@@ -90,7 +93,14 @@ export class GroupDetailComponent {
   displayedColumns: string[] = ['fullName', 'rol', 'meeting1', 'activity'];
   members: Member[];
 
-  constructor() {
+  constructor(
+    private _router: Router,
+    private _route: ActivatedRoute) {
     this.members = MEMBERS_DATA;
   }
+
+  ngOnInit(): void {
+    this.groupName = localStorage.getItem('groupName');
+  }
+   
 }

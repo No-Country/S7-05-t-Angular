@@ -2,11 +2,13 @@
     <div class="row sidenav-container">
         <div class="col-lg-3 sidenav">
             <div class="sidenav-content-teamleader d-flex justify-content-center flex-column align-items-center ">
-                <img class="sidenav-img" [src]='"assets/img/"+user.id+".png"' alt="team-leader-profile" style="border-radius: 50%;">
+                <img class="sidenav-img" [src]='"assets/img/"+user.id+".png"' alt="team-leader-profile"
+                    style="border-radius: 50%;">
                 <span class="sidenav-title"> {{user.nombre}} {{user.apellido}} </span>
                 <span class="sidenav-subtitle" *ngIf="user.isAdmin != null"> {{ getRol(user.isAdmin) }} </span>
             </div>
-            <div class="sidenav-content-admin d-flex justify-content-center flex-column align-items-center gap-3 mt-4" *ngIf="user.isAdmin === 1">
+            <div class="sidenav-content-admin d-flex justify-content-center flex-column align-items-center gap-3 mt-4"
+                *ngIf="user.isAdmin === 1">
                 <a class="sidenav-links"> Comentarios </a>
                 <a class="sidenav-links"> Reportes </a>
                 <a class="sidenav-links"> Configuracion </a>
@@ -21,11 +23,19 @@
                 </mat-card-header>
                 <mat-card-content>
                     <p *ngIf="user.isAdmin == 1">
-                        ¡Bienvenido a nuestra página web de administrador! Aquí encontrarás todos los recursos necesarios para gestionar eficazmente a tus team leaders. Podrás monitorizar, actualizar contenido y realizar un seguimiento detenido de cada grupo.
-                        Estamos comprometidos con ofrecerte una experiencia de administración intuitiva y fácil de usar.                    </p>
+                        ¡Bienvenido a nuestra página web de administrador! Aquí encontrarás todos los recursos
+                        necesarios para gestionar eficazmente a tus team leaders. Podrás monitorizar, actualizar
+                        contenido y realizar un seguimiento detenido de cada grupo.
+                        Estamos comprometidos con ofrecerte una experiencia de administración intuitiva y fácil de usar.
+                    </p>
                     <p *ngIf="user.isAdmin == 0">
-                        Nuestra plataforma en línea está diseñada para ayudarte a gestionar y coordinar tu equipo de trabajo de manera más efectiva. Sabemos que liderar un equipo puede ser un desafío, por lo que hemos creado esta herramienta para facilitar el trabajo de los líderes de equipo y mejorar la colaboración en los proyectos.
-                        En nuestra página web, encontrarás una interfaz fácil de usar que te permitirá ver el progreso de las tareas asignadas a los miembros de tu equipo también podrás asignarles roles y responsabilidades específicas.
+                        Nuestra plataforma en línea está diseñada para ayudarte a gestionar y coordinar tu equipo de
+                        trabajo de manera más efectiva. Sabemos que liderar un equipo puede ser un desafío, por lo que
+                        hemos creado esta herramienta para facilitar el trabajo de los líderes de equipo y mejorar la
+                        colaboración en los proyectos.
+                        En nuestra página web, encontrarás una interfaz fácil de usar que te permitirá ver el progreso
+                        de las tareas asignadas a los miembros de tu equipo también podrás asignarles roles y
+                        responsabilidades específicas.
                     </p>
                 </mat-card-content>
             </mat-card>
@@ -36,7 +46,7 @@
                         <p class="group"> Grupo </p>
                         <p class="group-name"> {{grupo.name}} </p>
                         <!-- <p class="group-name"> {{grupo.seleccionado ? "S"+grupo.seleccionado : "C"+grupo.cohorte }} - {{grupo.numero != null ? grupo.numero < 10 ? "0"+grupo.numero : ""+grupo.numero : "" }} - {{grupo.turno}} - {{grupo.stack}} </p> -->
-                        <button mat-icon-button (click)="onClick()">
+                        <button mat-icon-button (click)="onClick(grupo.name)">
                             <mat-icon> chevron_right </mat-icon>
                         </button>
                     </mat-card-content>
@@ -48,7 +58,8 @@
                     <div class="col-lg-4 col-sm-12" *ngFor="let tl of teamLeaders">
                         <mat-card class="teamleaders-card">
                             <mat-card-content class="teamleaders-card-content">
-                                <img class="teamleaders-card-img" [src]='"assets/img/"+tl.studentId+".png"' alt="perfilTL">
+                                <img class="teamleaders-card-img" [src]='"assets/img/"+tl.studentId+".png"'
+                                    alt="perfilTL">
                                 <span class="teamleaders-card-title"> {{tl.student.name}} </span>
                                 <span class="teamleaders-card-subtitle"> Desarrollador web </span>
                                 <!-- <span class="teamleaders-card-subtitle"> {{tl.rol}} </span> -->
@@ -58,7 +69,7 @@
                                     <!-- {{grupo.seleccionado ? "S"+grupo.seleccionado : "C"+grupo.cohorte }} - {{grupo.numero != null ? grupo.numero < 10 ? "0"+grupo.numero : ""+grupo.numero : "" }} - {{grupo.turno}} - {{grupo.stack}}  -->
                                 </span>
                             </mat-card-content>
-                            <button class="teamleaders-card-btn" mat-icon-button (click)="onClick()">
+                            <button class="teamleaders-card-btn" mat-icon-button (click)="goToInformation(grupo)">
                                 <mat-icon> chevron_right </mat-icon>
                             </button>
                         </mat-card>
