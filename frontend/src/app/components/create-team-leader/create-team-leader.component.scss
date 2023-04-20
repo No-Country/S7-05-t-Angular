@@ -1,0 +1,82 @@
+.container {
+    margin: 0;
+    padding: 0;
+    height: 50%;
+    display: flex;
+    flex-flow: row;
+    border: 1px solid grey;
+    overflow: hidden;
+    align-items: center;
+    background-color: #FFF;
+    width: auto;
+}
+
+form {
+    width: 70%;
+}
+
+.create-tl {
+    text-align: center;
+    position: relative;
+    left: -50vh;
+    width: 70%;
+
+
+}
+
+.btn-submit {
+    background: #1D90FC;
+    color: #FFF;
+    border-radius: 100px;
+    float: right;
+}
+
+
+.img-1 {
+    position: relative;
+    left: -9vh;
+    top: -11vh;
+    width: 40vh;
+    transform: rotate(166deg);
+}
+
+
+.img-2 {
+    position: relative;
+    left: -40vh;
+    bottom: -30vh;
+    transform: rotate(345deg);
+    width: 50vh;
+}
+
+
+@media (max-width:768px) {
+    :host {
+        height: 80vh;
+        display: block;
+    }
+
+    .container {
+        flex-flow: column;
+        height: 100%;
+    }
+
+    .img-1 {
+        left: -3vh;
+        top: -28vh;
+    }
+
+    .img-2 {
+        left: 10vh;
+        bottom: -27vh;
+    }
+
+    .login {
+        left: 0;
+        width: 100%;
+        top: -57vh;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -7,6 +7,8 @@ import { GruposService } from 'src/app/services/Grupos.service';
 import { TeamLeadersService } from 'src/app/services/TeamLeaders.service'; 
 import { first } from 'rxjs';
 import { TeamLeader } from 'src/app/models/TeamLeader';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateTeamLeaderComponent } from '../create-team-leader/create-team-leader.component';
 
 
 @Component({
@@ -20,17 +22,19 @@ export class HomeComponent {
   grupos: Array<Grupo> = new Array<Grupo>();
   teamLeaders: Array<TeamLeader> = new Array<TeamLeader>();
   grupo: any;
+  showDropdown = false;
+  showSelect = false;
+  selectedGroup: any
 
   constructor(
     private _router: Router,
-    private _authenticationService: AuthenticationService,
+    private _dialog: MatDialog,
     private _gruposService: GruposService,
     private _teamLeadersService: TeamLeadersService
   ) { }
   
   ngOnInit() {
     this.user = this.parseLocalStorage(localStorage.getItem('user') || "");
-    console.log(this.user)
     if (this.user.isAdmin == 1) {
       this.obtenerTeamLeaders();
     } else if(this.user.isTeamLeader == 1) {
@@ -76,13 +80,31 @@ export class HomeComponent {
         this.loading = false;
   }
 
+  openModalAddTl(){
+    const dialogRef = this._dialog.open(CreateTeamLeaderComponent,{
+      maxWidth:'750px',
+      maxHeight:'700px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this._dialog.closeAll();
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
   onClick(groupName: any) {
     localStorage.setItem('groupName', groupName);
     this._router.navigateByUrl('/detail');
   }
 
-  goToInformation(tl: any){
-    console.log(tl)
-
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
   }
+
+  onGroupSelected(group: any) {
+    localStorage.setItem('groupName', group.name);
+    localStorage.setItem('groupId', group.id);
+    this._router.navigateByUrl('/detail');
+  }
+
 }

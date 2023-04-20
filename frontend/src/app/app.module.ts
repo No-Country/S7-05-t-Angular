@@ -8,30 +8,31 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
-// compoents
+// Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { GroupDetailComponent } from './components/group-detail/group-detail.component';
-// import { PerfilComponent } from './components/perfil/perfil.component';
-// material
+import { LandingComponent } from './components/landing/landing.component';
+
 /* Angular Material */
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatCardModule} from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatIconModule} from '@angular/material/icon';
-import { LandingComponent } from './components/landing/landing.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import {AuthenticationService} from './services/Authentication.service';
 import {GruposService} from './services/Grupos.service';
 import {TeamLeadersService} from './services/TeamLeaders.service';
+import { CreateTeamLeaderComponent } from './components/create-team-leader/create-team-leader.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {TeamLeadersService} from './services/TeamLeaders.service';
     NavbarComponent,
     HomeComponent,
     GroupDetailComponent,
-    LandingComponent
+    LandingComponent,
+    CreateTeamLeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ import {TeamLeadersService} from './services/TeamLeaders.service';
     MatCheckboxModule,
     MatDialogModule,
     MatCardModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSelectModule
   ],
   providers: [AuthenticationService, GruposService, TeamLeadersService],
   bootstrap: [AppComponent]
