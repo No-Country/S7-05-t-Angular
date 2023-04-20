@@ -1,45 +1,58 @@
 import { state } from '@angular/animations';
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WeeksAndMeetService } from 'src/app/services/weeks-and-meet.service';
 
 export interface Member {
+  id: string;
   fullName: string;
   rol: string;
   meeting1attendance: boolean;
+  meeting1absence: boolean;
   activity: string;
 }
 
 const MEMBERS_DATA: Member[] = [
   {
-    fullName: 'Juanita Perez',
+    id: '7bb97952-a5fb-4a68-9da8-9017b078b42f',
+    fullName: 'Olivia White',
     rol: 'Frontend',
     meeting1attendance: true,
-    activity: 'Actividad de esta semana'
+    meeting1absence: false,
+    activity: ''
   },
   {
-    fullName: 'Maria Gutierrez',
+    id: '5542b8ee-01bb-4f9d-b86e-f3cb419b10e0',
+    fullName: 'James Martinez',
     rol: 'Backend',
     meeting1attendance: true,
-    activity: 'Actividad de esta semana'
+    meeting1absence: false,
+    activity: ''
   },
   {
-    fullName: 'Marcos Diaz',
+    id: '9ac8bc47-9468-4265-96e2-ca1e40223fab',
+    fullName: 'Gabriela Torres',
     rol: 'Tester',
-    meeting1attendance: false,
-    activity: 'Actividad de esta semana'
+    meeting1attendance: true,
+    meeting1absence: false,
+    activity: ''
   },
   {
-    fullName: 'Lucas Gomez',
+    id: '3e77afa4-288b-4c26-b5ee-07da2ff71316',
+    fullName: 'Luis Pérez',
     rol: 'Backend',
     meeting1attendance: true,
-    activity: 'Actividad de esta semana'
+    meeting1absence: false,
+    activity: ''
   },
   {
-    fullName: 'Nicolas Sandoval',
+    id: 'ed3b01ac-0f70-4a06-9f3b-5ce1c31984c3',
+    fullName: 'Juan González',
     rol: 'Backend',
     meeting1attendance: true,
-    activity: 'Actividad de esta semana'
+    meeting1absence: false,
+    activity: ''
   },
 ];
 
@@ -53,6 +66,8 @@ export class GroupDetailComponent implements OnInit {
   isMeetButtonClicked = false;
   meetElement: any;
   groupName: any;
+  comentario: string = '';
+  weeks: any;
 
   toggleButton(){
     const meetElement = document.getElementById('meet');
@@ -108,14 +123,33 @@ export class GroupDetailComponent implements OnInit {
 
   getAllWeeks(){
     this._weekAndMeetServ.getAllWeeks().subscribe(
-      (res) => {
-        console.log(res)
+      (res: any) => {
+        this.weeks = res.getWeeks;
       }
     )
   }
 
   sendAllInformationOfMeet(){
+    console.log(this.members);
+    this._weekAndMeetServ.createMeet({'weekId': this.obtenerWeekId(1), 'teamId': localStorage.getItem('teamId'), 'meet_number': 1, 'date': new Date(), 'observation': this.comentario}).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.members.map( elem => {
+          this._weekAndMeetServ.createAttendance({'is_present': elem.meeting1attendance, 'studentId': elem.id, 'meetingId': res.meeting.id}).subscribe( (res) => {
+            console.log(res);
+          });
+        })
+      }
+    )
     // invocar servicio de crear meet y crear asistencias
+  }
+
+  obtenerWeekId(weekNumber: number):string {
+    let index = this.weeks.findIndex((elem: any) => elem.number == weekNumber)
+    if (index != -1) {
+      return this.weeks[index].id
+    }
+    return 'id';
   }
    
 }

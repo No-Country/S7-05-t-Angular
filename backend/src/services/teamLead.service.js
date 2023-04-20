@@ -122,7 +122,7 @@ async function getTeams(teamLeadId) {
       {
         model: models.Team,
         as: "teams",
-        attributes: ["name"], // atributos de la entidad Technology
+        attributes: ["id", "name"], // atributos de la entidad Technology
       },
     ]
   });

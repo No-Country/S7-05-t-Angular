@@ -46,7 +46,7 @@
                         <p class="group"> Grupo </p>
                         <p class="group-name"> {{grupo.name}} </p>
                         <!-- <p class="group-name"> {{grupo.seleccionado ? "S"+grupo.seleccionado : "C"+grupo.cohorte }} - {{grupo.numero != null ? grupo.numero < 10 ? "0"+grupo.numero : ""+grupo.numero : "" }} - {{grupo.turno}} - {{grupo.stack}} </p> -->
-                        <button mat-icon-button (click)="onClick(grupo.name)">
+                        <button mat-icon-button (click)="onClick(grupo.name, grupo.id)">
                             <mat-icon> chevron_right </mat-icon>
                         </button>
                     </mat-card-content>

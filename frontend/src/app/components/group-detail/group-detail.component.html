@@ -171,8 +171,8 @@
             <ng-container matColumnDef="activity">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let element">
-                    <p>{{ element.activity }}</p>
-                    <input class="activity-week" type="text">
+                    <p>Actividad de esta semana</p>
+                    <input [(ngModel)]="element.activity" class="activity-week" type="text">
                 </td>
             </ng-container>
 
@@ -182,7 +182,7 @@
     <div class="general-observation-week">
         <p>Observación de la semana</p>
         <mat-card>
-            <mat-card-content><input type="text" placeholder="Deja un comentario"></mat-card-content>
+            <mat-card-content><input type="text" placeholder="Deja un comentario" [(ngModel)]="comentario"></mat-card-content>
         </mat-card>
     </div>
     <div class="button-container">

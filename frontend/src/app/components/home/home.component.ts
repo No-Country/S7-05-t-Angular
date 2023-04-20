@@ -60,6 +60,7 @@ export class HomeComponent {
       .pipe(first())
       .subscribe((response: any) => {
         this.grupos = response.data[0].teams;
+      console.log(this.grupos)    
     });
     this.loading = false;
   }
@@ -92,8 +93,9 @@ export class HomeComponent {
     });
   }
 
-  onClick(groupName: any) {
+  onClick(groupName: any, teamId: any) {
     localStorage.setItem('groupName', groupName);
+    localStorage.setItem('teamId', teamId);
     this._router.navigateByUrl('/detail');
   }
 

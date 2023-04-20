@@ -30,9 +30,8 @@ async function createMeeting({
   if (!week) {
     throw new Error("La semana no existe");
   }
-
   // Verificar que el team existe
-  const team = await teamService.getTeam(teamId);
+  // const team = await teamService.getTeam(teamId);
 
   // Validar que el número de la reunión sea válido
   if ((meet_number != 1) & (meet_number != 2)) {
@@ -90,7 +89,8 @@ async function getMeetingWithId(meetingId) {
 // Crear la asistencia de un estudiante al meeting
 const createAttendance = async ({ is_present, studentId, meetingId }) => {
   // Verificar que la reunión exista
-  const meeting = await models.Meeting.findByPk(meetingId);
+  console.log(is_present, studentId, meetingId)
+  const meeting = await models.Meeting.findOne({where: { id: meetingId }});
   if (!meeting) {
     throw new Error("La reunión no existe");
   }
@@ -98,7 +98,9 @@ const createAttendance = async ({ is_present, studentId, meetingId }) => {
   // Verificar que el estudiante exista en el equipo
   const teamId = meeting.dataValues.teamId;
   const teamStudents = await teamService.getTeam(teamId);
+  console.log(teamStudents)
   const students = teamStudents.students.map((student) => student.id);
+  console.log(students)
   const studentExists = students.includes(studentId);
 
   if (!studentExists) {
