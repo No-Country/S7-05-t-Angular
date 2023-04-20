@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Grupo } from 'src/app/models/Grupo';
 import { Student } from 'src/app/models/Talento';
@@ -11,10 +12,12 @@ import { StudentsService } from 'src/app/services/students.service';
   styleUrls: ['./create-team-leader.component.scss']
 })
 export class CreateTeamLeaderComponent {
-  groups: Array<Grupo> = new Array<Grupo>();
   students: Array<Student> = new Array<Student>();
+  tlName: string = '';
 
   constructor(
+    public dialogRef: MatDialogRef<CreateTeamLeaderComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private _router: Router,
     private _gruposService: GruposService,
     private _studentService: StudentsService
@@ -23,6 +26,10 @@ export class CreateTeamLeaderComponent {
   ngOnInit() {
     this.getAllStudents();
     this.getAllGroups();
+  }
+
+  compareGroups(group1: any, group2: any): boolean {
+    return group1 && group2 ? group1.id === group2.id : group1 === group2;
   }
 
   getAllStudents(){
@@ -39,6 +46,14 @@ export class CreateTeamLeaderComponent {
       console.log(res.data)
       //this.groups = res.data.filter((group: { isTeamLead: boolean; }) => group.isTeamLead == false);
     })
+  }
+
+  addTL() {
+    this.dialogRef.close(this.tlName);
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 
   onStudentSelected(student: any) {

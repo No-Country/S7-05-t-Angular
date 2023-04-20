@@ -28,6 +28,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import {AuthenticationService} from './services/Authentication.service';
 import {GruposService} from './services/Grupos.service';
@@ -65,7 +66,8 @@ import { CreateTeamLeaderComponent } from './components/create-team-leader/creat
     MatDialogModule,
     MatCardModule,
     BrowserAnimationsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [AuthenticationService, GruposService, TeamLeadersService],
   bootstrap: [AppComponent]

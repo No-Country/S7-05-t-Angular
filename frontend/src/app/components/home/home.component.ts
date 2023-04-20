@@ -4,7 +4,7 @@ import { Usuario } from 'src/app/models/Usuario';
 import { Grupo } from 'src/app/models/Grupo';
 import { AuthenticationService } from 'src/app/services/Authentication.service';
 import { GruposService } from 'src/app/services/Grupos.service';
-import { TeamLeadersService } from 'src/app/services/TeamLeaders.service'; 
+import { TeamLeadersService } from 'src/app/services/TeamLeaders.service';
 import { first } from 'rxjs';
 import { TeamLeader } from 'src/app/models/TeamLeader';
 import { MatDialog } from '@angular/material/dialog';
@@ -32,12 +32,12 @@ export class HomeComponent {
     private _gruposService: GruposService,
     private _teamLeadersService: TeamLeadersService
   ) { }
-  
+
   ngOnInit() {
     this.user = this.parseLocalStorage(localStorage.getItem('user') || "");
     if (this.user.isAdmin == 1) {
       this.obtenerTeamLeaders();
-    } else if(this.user.isTeamLeader == 1) {
+    } else if (this.user.isTeamLeader == 1) {
       this.obtenerGrupos();
     } else {
       console.log('Ocurrió un error al obtener el rol del usuario')
@@ -46,45 +46,45 @@ export class HomeComponent {
 
   parseLocalStorage(user: string): Usuario {
     let json = JSON.parse(user);
-    return new Usuario(json.id, " ", json.apellido, json.nombre, json.email, json.isAdmin, json.isTeamLeader, json.habilitado, json.grupoId, json.token, json.rol, json.stack) 
+    return new Usuario(json.id, " ", json.apellido, json.nombre, json.email, json.isAdmin, json.isTeamLeader, json.habilitado, json.grupoId, json.token, json.rol, json.stack)
   }
 
-  getRol(isAdmin: number) : string {
+  getRol(isAdmin: number): string {
     return isAdmin === 1 ? 'Administrador' : 'Team Leader'
-  } 
+  }
 
   obtenerGrupos() {
     this.grupos = new Array<Grupo>();
     this.loading = true;
-    this._gruposService.getAll(this.user.id ? this.user.id : '1234') 
+    this._gruposService.getAll(this.user.id ? this.user.id : '1234')
       .pipe(first())
       .subscribe((response: any) => {
         this.grupos = response.data[0].teams;
-      console.log(this.grupos)    
-    });
+        console.log(this.grupos)
+      });
     this.loading = false;
   }
 
   obtenerTeamLeaders() {
     // this.teamLeaders = new Array<Grupo>();
-        this.loading = true;    
-        this._teamLeadersService.getAll()
-          .pipe(first())
-          .subscribe((response: any) => {
-            if (response.success) {
-              this.teamLeaders = response.teamLeaders as TeamLeader[];
-              console.log(this.teamLeaders)
-            } else {
-              console.log('error')
-            }         
-        });
-        this.loading = false;
+    this.loading = true;
+    this._teamLeadersService.getAll()
+      .pipe(first())
+      .subscribe((response: any) => {
+        if (response.success) {
+          this.teamLeaders = response.teamLeaders as TeamLeader[];
+          console.log(this.teamLeaders[1])
+        } else {
+          console.log('error')
+        }
+      });
+    this.loading = false;
   }
 
-  openModalAddTl(){
-    const dialogRef = this._dialog.open(CreateTeamLeaderComponent,{
-      maxWidth:'750px',
-      maxHeight:'700px',
+  openModalAddTl() {
+    const dialogRef = this._dialog.open(CreateTeamLeaderComponent, {
+      maxWidth: '750px',
+      maxHeight: '700px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

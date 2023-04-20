@@ -21,7 +21,9 @@ form {
     left: -50vh;
     width: 70%;
 
-
+    .selected {
+        background-color: #f2f2f2;
+    }
 }
 
 .btn-submit {
