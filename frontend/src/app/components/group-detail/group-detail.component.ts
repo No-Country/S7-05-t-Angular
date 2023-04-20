@@ -129,6 +129,10 @@ export class GroupDetailComponent implements OnInit {
     )
   }
 
+  onWeekClick(weekId: string) {
+    console.log(`Se hizo clic en la semana con el ID: ${weekId}`);
+  }
+
   sendAllInformationOfMeet(){
     console.log(this.members);
     this._weekAndMeetServ.createMeet({'weekId': this.obtenerWeekId(1), 'teamId': localStorage.getItem('teamId'), 'meet_number': 1, 'date': new Date(), 'observation': this.comentario}).subscribe(
