@@ -1,5 +1,3 @@
-import { state } from '@angular/animations';
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WeeksAndMeetService } from 'src/app/services/weeks-and-meet.service';
@@ -20,7 +18,7 @@ const MEMBERS_DATA: Member[] = [
     rol: 'Frontend',
     meeting1attendance: true,
     meeting1absence: false,
-    activity: ''
+    activity: 'Creación de componentes principales'
   },
   {
     id: '5542b8ee-01bb-4f9d-b86e-f3cb419b10e0',
@@ -28,7 +26,7 @@ const MEMBERS_DATA: Member[] = [
     rol: 'Backend',
     meeting1attendance: true,
     meeting1absence: false,
-    activity: ''
+    activity: 'Preparar controladores y modelos'
   },
   {
     id: '9ac8bc47-9468-4265-96e2-ca1e40223fab',
@@ -36,7 +34,7 @@ const MEMBERS_DATA: Member[] = [
     rol: 'Tester',
     meeting1attendance: true,
     meeting1absence: false,
-    activity: ''
+    activity: 'Casos de prueba para el login'
   },
   {
     id: '3e77afa4-288b-4c26-b5ee-07da2ff71316',
@@ -44,7 +42,7 @@ const MEMBERS_DATA: Member[] = [
     rol: 'Backend',
     meeting1attendance: true,
     meeting1absence: false,
-    activity: ''
+    activity: 'Crear repositorio'
   },
   {
     id: 'ed3b01ac-0f70-4a06-9f3b-5ce1c31984c3',
@@ -52,7 +50,7 @@ const MEMBERS_DATA: Member[] = [
     rol: 'Backend',
     meeting1attendance: true,
     meeting1absence: false,
-    activity: ''
+    activity: 'Preparar diagrama de relaciones de entidades'
   },
 ];
 
@@ -68,6 +66,7 @@ export class GroupDetailComponent implements OnInit {
   groupName: any;
   comentario: string = '';
   weeks: any;
+  selectedWeek: string = 'c5d5d5c5-5298-4c25-8825-5c1d0fae55ac';
 
   toggleButton(){
     const meetElement = document.getElementById('meet');
@@ -129,10 +128,6 @@ export class GroupDetailComponent implements OnInit {
     )
   }
 
-  onWeekClick(weekId: string) {
-    console.log(`Se hizo clic en la semana con el ID: ${weekId}`);
-  }
-
   sendAllInformationOfMeet(){
     console.log(this.members);
     this._weekAndMeetServ.createMeet({'weekId': this.obtenerWeekId(1), 'teamId': localStorage.getItem('teamId'), 'meet_number': 1, 'date': new Date(), 'observation': this.comentario}).subscribe(
@@ -154,6 +149,11 @@ export class GroupDetailComponent implements OnInit {
       return this.weeks[index].id
     }
     return 'id';
+  }
+
+  onWeekClick(id: string) {
+    this.selectedWeek = id;
+    console.log(id)
   }
    
 }
