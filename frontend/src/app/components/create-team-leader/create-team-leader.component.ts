@@ -15,7 +15,7 @@ export class CreateTeamLeaderComponent {
   students: Array<Student> = new Array<Student>();
   groups: any;
 
-  constructor(
+  constructor( 
     public dialogRef: MatDialogRef<CreateTeamLeaderComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _router: Router,
