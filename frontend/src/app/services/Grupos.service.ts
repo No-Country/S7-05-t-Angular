@@ -23,20 +23,20 @@ export class GruposService {
         this.url = environment.url;
     }
 
-    getAll() {
-        return this._http.get<Grupo[]>(`${this.url}/grupos`);
+    getAll(id: string) {
+        return this._http.get<Grupo[]>(`${this.url}users/teamLead/teams/${id}`);
     }
 
     getById(id: string) {
-        return this._http.get<Grupo>(`${this.url}/grupos/${id}`);
+        return this._http.get<Grupo>(`${this.url}users/teamLead/${id}`);
     }
 
     update(id: string, params: any) {
-        return this._http.put(`${this.url}/grupos/${id}`, params);
+        return this._http.put(`${this.url}users/teamLead/${id}`, params);
     }
 
     delete(id: string) {
-        return this._http.delete(`${this.url}/grupos/${id}`);
+        return this._http.delete(`${this.url}users/teamLead/${id}`);
     }
 
 }

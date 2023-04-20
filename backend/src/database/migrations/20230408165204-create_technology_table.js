@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const { ADMIN_TABLE } = require("../models/admin.model");
 const { TECHNOLOGY_TABLE } = require("../models/technology.model");
@@ -8,22 +8,22 @@ module.exports = {
     await queryInterface.createTable(TECHNOLOGY_TABLE, {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
       },
       name: {
         allowNull: false,
         type: Sequelize.STRING,
       },
       adminId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         references: {
           model: ADMIN_TABLE,
-          key: 'id',
+          key: "id",
         },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
       },
       createdAt: {
         allowNull: false,
@@ -38,5 +38,5 @@ module.exports = {
 
   down: async (queryInterface) => {
     await queryInterface.dropTable(TECHNOLOGY_TABLE);
-  }
+  },
 };

@@ -32,6 +32,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 import {AuthenticationService} from './services/Authentication.service';
 import {GruposService} from './services/Grupos.service';
+import {TeamLeadersService} from './services/TeamLeaders.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import {GruposService} from './services/Grupos.service';
     BrowserAnimationsModule,
     MatExpansionModule
   ],
-  providers: [AuthenticationService, GruposService],
+  providers: [AuthenticationService, GruposService, TeamLeadersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

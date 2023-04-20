@@ -5,9 +5,9 @@ const STUDENT_TABLE = "Students";
 const StudentSchema = {
   id: {
     allowNull: false,
-    autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
   },
   name: {
     allowNull: false,
@@ -34,18 +34,18 @@ const StudentSchema = {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
-  teamId: {
-    type: Sequelize.INTEGER,
-    allowNull: true,
-    references: {
-      model: "Teams",
-      key: "id",
-    },
-    onUpdate: "CASCADE",
-    onDelete: "SET NULL",
-  },
+  // teamId: {
+  //   type: Sequelize.UUID,
+  //   allowNull: true,
+  //   references: {
+  //     model: "Teams",
+  //     key: "id",
+  //   },
+  //   onUpdate: "CASCADE",
+  //   onDelete: "SET NULL",
+  // },
   adminId: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.UUID,
     references: {
       model: ADMIN_TABLE,
       key: "id",
@@ -57,10 +57,10 @@ const StudentSchema = {
 
 class Student extends Model {
   static associate(models) {
-    this.belongsTo(models.Team, {
-      foreignKey: "teamId",
-      as: "team",
-    });
+    // this.belongsTo(models.Team, {
+    //   foreignKey: "teamId",
+    //   as: "team",
+    // });
     this.belongsTo(models.Admin, {
       foreignKey: "adminId",
       as: "admin",
@@ -69,6 +69,24 @@ class Student extends Model {
       through: "Student_Technologies",
       foreignKey: "studentId",
     });
+
+    this.belongsToMany(models.Team, {
+      as: "teams",
+      through: models.TeamStudent,
+      foreignKey: "studentId",
+      // otherKey: "teamId"
+    });
+
+    this.hasMany(models.Attendance, {
+      foreignKey: "studentId",
+      as: "attendance",
+    });
+
+    this.hasMany(models.StudentActivity, {
+      foreignKey: "studentId",
+      as: "studentActivity",
+    });
+
     this.hasOne(models.TeamLead, {
       foreignKey: "studentId",
       as: "teamLead",

@@ -12,11 +12,11 @@ export class LandingComponent {
 
   constructor(private dialog: MatDialog) {}
 
-  openModal(value: string) {
+  openModal(tipoLogin: number) {
     const dialogRef = this.dialog.open(LoginComponent,{
       maxWidth:'750px',
       maxHeight:'700px',
-      data: { value: value }
+      data: { tipoLogin: tipoLogin }
     });
 
     dialogRef.afterClosed().subscribe(result => {

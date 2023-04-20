@@ -1,21 +1,21 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
-const {ADMIN_TABLE } = require("./admin.model");
+const { ADMIN_TABLE } = require("./admin.model");
 
 const TECHNOLOGY_TABLE = "Technologies";
 
 const TechnologySchema = {
   id: {
     allowNull: false,
-    autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
   },
   name: {
     allowNull: false,
     type: DataTypes.STRING,
   },
   adminId: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.UUID,
     references: {
       model: ADMIN_TABLE,
       key: "id",
@@ -34,6 +34,10 @@ class Technology extends Model {
     this.belongsToMany(models.Student, {
       through: "Student_Technologies",
       foreignKey: "technologyId",
+    });
+    this.belongsToMany(models.Team, {
+      through: "Team_Technologies",
+      foreignKey: "teamId",
     });
   }
   static config(sequelize) {
