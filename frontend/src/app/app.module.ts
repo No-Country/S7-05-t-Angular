@@ -15,7 +15,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { GroupDetailComponent } from './components/group-detail/group-detail.component';
 import { LandingComponent } from './components/landing/landing.component';
-// import { PerfilComponent } from './components/perfil/perfil.component';
 
 /* Angular Material */
 import { MatListModule } from '@angular/material/list';
@@ -29,10 +28,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import {AuthenticationService} from './services/Authentication.service';
 import {GruposService} from './services/Grupos.service';
 import {TeamLeadersService} from './services/TeamLeaders.service';
+import { CreateTeamLeaderComponent } from './components/create-team-leader/create-team-leader.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import {TeamLeadersService} from './services/TeamLeaders.service';
     NavbarComponent,
     HomeComponent,
     GroupDetailComponent,
-    LandingComponent
+    LandingComponent,
+    CreateTeamLeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,9 @@ import {TeamLeadersService} from './services/TeamLeaders.service';
     MatDialogModule,
     MatCardModule,
     BrowserAnimationsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [AuthenticationService, GruposService, TeamLeadersService],
   bootstrap: [AppComponent]

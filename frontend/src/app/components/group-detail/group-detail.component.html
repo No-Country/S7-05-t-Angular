@@ -1,21 +1,14 @@
 <body>
     <div class="title">
-        <p>s7-05-t-angular</p>
+        <p>{{ groupName }}</p>
     </div>
-    <div class="week-navbar ">
-        <mat-card>
-            <mat-card-content>SEMANA 1</mat-card-content>
+    <div class="week-navbar">
+        <mat-card *ngFor="let week of weeks" [attr.id]="'week-' + week.id" 
+                  (click)="onWeekClick(week.id)"
+                  [class.selected]="week.id === selectedWeek">
+          <mat-card-content>SEMANA {{ week.number }}</mat-card-content>
         </mat-card>
-        <mat-card>
-            <mat-card-content>SEMANA 2</mat-card-content>
-        </mat-card>
-        <mat-card>
-            <mat-card-content>SEMANA 3</mat-card-content>
-        </mat-card>
-        <mat-card>
-            <mat-card-content>SEMANA 4</mat-card-content>
-        </mat-card>
-    </div>
+      </div>          
     <div class="container-group-info">
         <div *ngIf="members.length > 0" class="members">
             <h4>Integrantes:</h4>
@@ -30,13 +23,13 @@
                 <div class="column">
                     <p>UX/UI</p>
                     <mat-form-field>
-                        <input matInput>
+                        <input matInput> Figma
                     </mat-form-field>
                 </div>
                 <div class="column">
                     <p>Frontend</p>
                     <mat-form-field>
-                        <input matInput>
+                        <input matInput> Angular v15
                     </mat-form-field>
                 </div>
             </div>
@@ -44,13 +37,13 @@
                 <div class="column">
                     <p>Backend</p>
                     <mat-form-field>
-                        <input matInput>
+                        <input matInput> Node Js
                     </mat-form-field>
                 </div>
                 <div class="column">
                     <p>Database</p>
                     <mat-form-field>
-                        <input matInput>
+                        <input matInput> PostgreSQL
                     </mat-form-field>
                 </div>
             </div>
@@ -58,13 +51,13 @@
                 <div class="column">
                     <p>Testing</p>
                     <mat-form-field>
-                        <input matInput>
+                        <input matInput> Manual
                     </mat-form-field>
                 </div>
                 <div class="column">
                     <p>Deployment</p>
                     <mat-form-field>
-                        <input matInput>
+                        <input matInput> Vercel - Railway
                     </mat-form-field>
                 </div>
             </div>
@@ -212,13 +205,47 @@
             </ng-template>
         </mat-expansion-panel>
     </div>
+    <div  class="table-info-week" >
+        <table mat-table [dataSource]="members">
+
+            <ng-container matColumnDef="fullName">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="rol">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="meeting1">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element">
+                    <input type="checkbox" [(ngModel)]="element.meeting1attendance" (ngModelChange)="element.meeting1absence = !element.meeting1attendance"> <p>Presente</p>
+                    <input type="checkbox" [(ngModel)]="element.meeting1absence" (ngModelChange)="element.meeting1attendance = !element.meeting1absence"> <p>Ausente</p>
+                </td>
+            </ng-container>
+            <div class="first-week" >
+                <ng-container matColumnDef="activity">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                        <p>Actividad de esta semana</p>
+                        <input *ngIf="selectedWeek === 'c5d5d5c5-5298-4c25-8825-5c1d0fae55ac'" [(ngModel)]="element.activity" class="activity-week" type="text"> 
+                        <input *ngIf="selectedWeek === '1f8fcdf9-f2d2-4e38-97a5-4f62ad4b4d4a'" class="activity-week" type="text">
+                    </td>
+                </ng-container>
+            </div>
+
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
     <div class="general-observation-week">
         <p>Observación de la semana</p>
         <mat-card>
-            <mat-card-content><input type="text" placeholder="Deja un comentario"></mat-card-content>
+            <mat-card-content><input type="text" placeholder="Deja un comentario" [(ngModel)]="comentario"></mat-card-content>
         </mat-card>
     </div>
     <div class="button-container">
-        <button class="submit-meet-information">Aceptar</button>
+        <button class="submit-meet-information" (click)="sendAllInformationOfMeet()">Aceptar</button>
     </div>
 </body>

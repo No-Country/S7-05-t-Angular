@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment';
-import * as moment from "moment";
-import { BehaviorSubject, catchError, from, map, Observable, Subject, tap } from 'rxjs';
 import { Grupo } from '../models/Grupo'
 @Injectable()
 export class GruposService {
@@ -21,6 +19,10 @@ export class GruposService {
         private _router: Router,
     ) {
         this.url = environment.url;
+    }
+
+    getAllGroups(){
+        return this._http.get<Grupo[]>(`${this.url}team/all`);
     }
 
     getAll(id: string) {

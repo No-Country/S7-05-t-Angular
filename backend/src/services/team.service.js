@@ -18,7 +18,7 @@ const getAllTeam = async () => {
         include: [
           {
             model: models.Student,
-            as: "Student",
+            as: "student",
             attributes: ["id", "name", "email"],
           },
         ],
@@ -36,6 +36,7 @@ const getAllTeam = async () => {
   });
   return teams;
 };
+
 
 //Obtener un team por id
 async function getTeam(teamId) {
@@ -55,7 +56,7 @@ async function getTeam(teamId) {
         include: [
           {
             model: models.Student,
-            as: "Student",
+            as: "student",
             attributes: ["id", "name", "email"],
           },
         ],

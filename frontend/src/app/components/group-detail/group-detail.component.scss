@@ -12,30 +12,31 @@ body {
     display: flex;
     justify-content: space-between;
 
+  
     mat-card {
       width: 23%;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       cursor: pointer;
-
+  
       mat-card-content {
         text-align: center;
-        font-size: map-get(variables.$font-sizes , "subtitle");
+        font-size: map-get(variables.$font-sizes, "subtitle");
         font-weight: 800;
         padding: 0.3rem;
       }
-
     }
 
     mat-card:first-child {
       background-color: map-get(variables.$colors, "primary");
-      color: #ffff;
-    }
+      color: #fff;
 
     mat-card:hover {
       background-color: map-get(variables.$colors, "primary");
-      color: #ffff;
+      color: #fff;
     }
   }
+  
+  
 
   .container-group-info {
     padding-top: 3rem;

@@ -1,0 +1,35 @@
+<div class="container d-flex row">
+    <img class="img-1" src="../../../assets/img/rectblue.png" alt="">
+    <img  class="img-2" src="../../../assets/img/rectgreen.png" alt="">
+    <div class="create-tl">
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline" style="width: 100%">
+                <mat-select placeholder="Nombre" (selectionChange)="onStudentSelected($event.value)">
+                    <mat-option *ngFor="let student of students" [value]="student">
+                        {{student.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%">
+                <input matInput type="text" placeholder="Profesión" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%">
+                <mat-select placeholder="Grupos" (selectionChange)="onGroupSelected($event.value)" multiple>
+                  <mat-option [value]="'S8-25-t-React'" selected>
+                    S8-25-t-React
+                  </mat-option>
+                  <mat-option [value]="'S8-20-t-Java-Angular'" selected>
+                    S8-20-t-Java-Angular
+                  </mat-option>
+                  <mat-option [value]="'S8-7-t-No Code'">
+                    S8-7-t-No Code
+                  </mat-option>
+                  <mat-option [value]="'S8-3-t-.NET'">
+                    S8-3-t-.NET
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>              
+            <button  mat-fab extended class="btn-submit" [disabled]="!loginForm.form.valid" (click)="addTL()">Añadir Team Lider</button>
+        </form>
+    </div>
+</div>
