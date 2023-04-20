@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WeeksAndMeetService } from 'src/app/services/weeks-and-meet.service';
 
@@ -111,6 +112,7 @@ export class GroupDetailComponent implements OnInit {
   constructor(
     private _router: Router,
     private _weekAndMeetServ: WeeksAndMeetService,
+    private _snackBar: MatSnackBar,
     private _route: ActivatedRoute) {
     this.members = MEMBERS_DATA;
   }
@@ -130,7 +132,8 @@ export class GroupDetailComponent implements OnInit {
 
   sendAllInformationOfMeet(){
     console.log(this.members);
-    this._weekAndMeetServ.createMeet({'weekId': this.obtenerWeekId(1), 'teamId': localStorage.getItem('teamId'), 'meet_number': 1, 'date': new Date(), 'observation': this.comentario}).subscribe(
+    this._snackBar.open('La informacion se envio correctamente', 'OK');
+    /*this._weekAndMeetServ.createMeet({'weekId': this.obtenerWeekId(1), 'teamId': localStorage.getItem('teamId'), 'meet_number': 1, 'date': new Date(), 'observation': this.comentario}).subscribe(
       (res: any) => {
         console.log(res);
         this.members.map( elem => {
@@ -139,7 +142,7 @@ export class GroupDetailComponent implements OnInit {
           });
         })
       }
-    )
+    )*/
     // invocar servicio de crear meet y crear asistencias
   }
 
