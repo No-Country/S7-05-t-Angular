@@ -2,20 +2,11 @@
     <div class="title">
         <p>{{ groupName }}</p>
     </div>
-    <div class="week-navbar ">
-        <mat-card>
-            <mat-card-content>SEMANA 1</mat-card-content>
+    <div class="week-navbar">
+        <mat-card *ngFor="let week of weeks" [attr.id]="'week-' + week.id" (click)="onWeekClick(week.id)">
+            <mat-card-content>SEMANA {{ week.number }}</mat-card-content>
         </mat-card>
-        <mat-card>
-            <mat-card-content>SEMANA 2</mat-card-content>
-        </mat-card>
-        <mat-card>
-            <mat-card-content>SEMANA 3</mat-card-content>
-        </mat-card>
-        <mat-card>
-            <mat-card-content>SEMANA 4</mat-card-content>
-        </mat-card>
-    </div>
+    </div>    
     <div class="container-group-info">
         <div *ngIf="members.length > 0" class="members">
             <h4>Integrantes:</h4>

@@ -53,6 +53,7 @@ export class GroupDetailComponent implements OnInit {
   isMeetButtonClicked = false;
   meetElement: any;
   groupName: any;
+  weeks: any;
 
   toggleButton(){
     const meetElement = document.getElementById('meet');
@@ -108,10 +109,14 @@ export class GroupDetailComponent implements OnInit {
 
   getAllWeeks(){
     this._weekAndMeetServ.getAllWeeks().subscribe(
-      (res) => {
-        console.log(res)
+      (res: any) => {
+        this.weeks = res.getWeeks;
       }
     )
+  }
+
+  onWeekClick(weekId: string) {
+    console.log(`Se hizo clic en la semana con el ID: ${weekId}`);
   }
 
   sendAllInformationOfMeet(){
