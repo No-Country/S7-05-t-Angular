@@ -1,17 +1,16 @@
 @use '../../design-system/_reset.scss';
 @use '../../design-system/_variables.scss';
 
-body {
+body{
   padding: 0 3rem;
 
-  .title {
+  .title{
     margin: 1rem 0;
   }
 
   .week-navbar {
     display: flex;
     justify-content: space-between;
-
   
     mat-card {
       width: 23%;
@@ -25,43 +24,46 @@ body {
         padding: 0.3rem;
       }
     }
-
-    mat-card:first-child {
-      background-color: map-get(variables.$colors, "primary");
-      color: #fff;
-
+  
     mat-card:hover {
       background-color: map-get(variables.$colors, "primary");
       color: #fff;
+
+    }
+  
+    mat-card.selected, mat-card.default {
+      background-color: map-get(variables.$colors, "primary");
+      color: #fff;
+
     }
   }
   
   
 
-  .container-group-info {
+  .container-group-info{
     padding-top: 3rem;
     display: grid;
     grid-template-areas: '1 2';
     justify-content: space-evenly;
     margin-bottom: 2rem;
 
-    h4 {
-      font-size: map-get(variables.$font-sizes , "text");
+    h4{
+      font-size: map-get(variables.$font-sizes , "text" );
       font-weight: 700;
       margin-bottom: 2rem;
     }
 
-    .item-list {
+    .item-list{
       margin-bottom: 1rem;
     }
 
-    .row {
+    .row{
       display: flex;
       text-align: center;
     }
 
 
-    .column {
+    .column{
       flex: 1;
       margin-right: 1rem;
 
@@ -69,7 +71,7 @@ body {
 
   }
 
-  .content {
+  .content{
     display: flex;
     align-items: center;
 
@@ -84,37 +86,43 @@ body {
       position: absolute;
     }
 
-    .meet-number {
+    .meet-number{
       position: absolute;
       width: 94%;
       display: grid;
       gap: 43%;
       grid-template-areas: '1 2';
       justify-content: center;
-
-      button {
+      button{
         background: none;
         border: none;
-
-        &:hover {
+        color: rgb(132, 129, 129);
+        &:hover{
           color: #000;
         }
       }
-
-      .meet1,
-      .meet2 {
+      .meet1, .meet2 {
         cursor: pointer;
         margin-bottom: 0.7rem;
         display: inline;
-        font-size: map-get(variables.$font-sizes , "text");
+        font-size: map-get(variables.$font-sizes , "text" );
 
       }
 
+      #meet, #meet1{
+        display: none;
+      }
+      .dropdown{
+        display: none;
+      }
+      .dropOFF{
+        display: none;
+      }
     }
   }
 
 
-  .table-info-week {
+  .table-info-week{
     padding: 0 1.5rem;
     border-collapse: collapse;
     margin-top: 3rem;
@@ -144,29 +152,28 @@ body {
       border: 2px solid white;
     }
 
-    p {
+    p{
       display: inline;
       margin-right: 3rem;
     }
 
-    td,
-    th {
+    td, th {
       border: none;
     }
 
-    .activity-week {
+    .activity-week{
       width: 100%;
       height: 3rem;
       border: 0.1rem solid rgb(162, 157, 157);
     }
   }
 
-  .general-observation-week {
-    p {
-      font-size: map-get(variables.$font-sizes , "text");
+  .general-observation-week{
+    p{
+      font-size: map-get(variables.$font-sizes , "text" );
     }
 
-    input {
+    input{
       width: 100%;
       border: none;
 
@@ -177,17 +184,17 @@ body {
       border: none;
     }
 
-    mat-card {
+    mat-card{
       height: 4rem;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
   }
 
-  .button-container {
+  .button-container{
     display: flex;
     justify-content: right;
 
-    .submit-meet-information {
+    .submit-meet-information{
       margin: 2rem 0;
       padding: 0.5rem 2rem;
       width: 15%;
@@ -200,49 +207,24 @@ body {
 
 }
 
-.desktop {
-  display: block;
-}
+@media (max-width:1130px){
 
-.mobile {
-  display: none;
 }
 
 
-@media (max-width:890px) {
-
-  .desktop {
-    display: none;
-  }
-
-  .mobile {
-    display: block;
-
-    mat-expansion-panel {
-      margin-bottom: 1rem;
-
-      mat-expansion-panel-header {
-        h1 {
-          font-weight: 600;
-          margin-top: 1rem;
-        }
-      }
-    }
-  }
-
-  body {
-    .week-navbar {
+@media (max-width:890px){
+  body{
+    .week-navbar{
       flex-flow: column;
-
-      mat-card {
+      mat-card{
         width: 100%;
         margin-bottom: 2vh;
       }
     }
 
-    .container-group-info {
-      .technologies {
-        .titulo-2 {
+    .container-group-info{
+      .technologies{
+        .titulo-2{
           width: 100%;
           display: flex;
           align-items: center;
@@ -251,93 +233,44 @@ body {
         }
       }
     }
+    .content{
+      .meet-container{
+        display: none;
+      }
 
+      .meet-number{
+        display: flex;
+        flex-flow: column;
+        position: relative;
+        .button-clicked{
+            color: #000;
+          }
+        .meet2{
+          .button-clicked{
+            color:#000;
+          }
+        }
 
-    .button-container {
+        .dropdown{
+          height: 100%;
+          width: 100%;
+          display: block;
+        }
+      }
+    }
+    .table-info-week{
+      display: none;
+    }
+    .button-container{
       display: flex;
       justify-content: center;
 
-      .submit-meet-information {
+      .submit-meet-information{
         margin: 2rem 0;
         padding: 0.5rem 2rem;
         width: 70%;
       }
     }
-
-    .general-observation-week {
-  
-      mat-card {
-        height: 6rem;
-      }
-    }
   }
 
-}
-
-@media (max-width:677px) {
-  body {
-    .container-group-info {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .mobile {
-      .table-info-week table {
-        td {
-          margin: 0.3rem;
-        }
-
-        tr {
-          display: grid;
-          height: max-content;
-          justify-items: center;
-        }
-
-      }
-    }
-
-  }
-
-}
-
-@media (max-width:506px) {
-  body {
-    .table-info-week {
-      padding: 0;
-      margin: 0;
-
-      p {
-        margin-right: 1rem;
-      }
-
-    }
-  }
-
-}
-
-@media (max-width:392px) {
-  body {
-    .table-info-week {
-
-      p {
-        margin-right: 0.3rem;
-      }
-
-    }
-  }
-
-}
-
-@media (max-width:369px) {
-  body {
-    .table-info-week {
-
-      p {
-        display: block;
-      }
-
-    }
-  }
-}
 }

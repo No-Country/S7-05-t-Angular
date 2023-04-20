@@ -68,6 +68,42 @@ export class GroupDetailComponent implements OnInit {
   weeks: any;
   selectedWeek: string = 'c5d5d5c5-5298-4c25-8825-5c1d0fae55ac';
 
+  toggleButton(){
+    const meetElement = document.getElementById('meet');
+    if (window.innerWidth < 890) {
+
+      this.isMeetButtonClicked = !this.isMeetButtonClicked;
+
+      if (meetElement) {
+        if (this.isMeetButtonClicked) {
+          meetElement.setAttribute('id', 'meet');
+        } else if (window.innerWidth < 890) {
+          meetElement.removeAttribute('id');
+        }
+      }
+    }else{
+      this.meetElement.style.display = 'none';
+    }
+  }
+
+  toggleButton1(){
+    const meetElement = document.getElementById('meet1');
+    if (window.innerWidth < 890) {
+
+      this.isMeetButtonClicked1 = !this.isMeetButtonClicked1;
+
+      if (meetElement) {
+        if (this.isMeetButtonClicked) {
+          meetElement.setAttribute('id', 'meet1');
+        } else if (window.innerWidth < 890) {
+          meetElement.removeAttribute('id');
+        }
+      }
+    }else{
+      this.meetElement.style.display = 'none';
+    }
+  }
+
 
   displayedColumns: string[] = ['fullName', 'rol', 'meeting1', 'activity'];
   members: Member[];
